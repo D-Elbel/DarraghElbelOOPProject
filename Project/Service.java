@@ -2,7 +2,7 @@ package Project;
 
 import java.util.GregorianCalendar;
 
-public class Service {
+public class Service{
 
     private static int systemServiceNumber;
     private GregorianCalendar serviceDate;
