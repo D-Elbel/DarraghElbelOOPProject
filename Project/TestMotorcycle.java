@@ -42,8 +42,6 @@ public class TestMotorcycle {
                 return false;
             }
         }
-
         return true;
-
     }
 }

@@ -163,10 +163,6 @@ public class Motorcycle {
 
         char yearCodes[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'};
 
-        //Building warning message indicating which attributes could not be decoded from VIN
-
-
-
         if(getVin().charAt(0) != 'J'){
             recognitionWarnings += "Could Not Recognize Country Code";
         }
@@ -175,8 +171,6 @@ public class Motorcycle {
         }
 
         //Finding Manufacturer
-
-
         for(int j = 0; j < manufacturerCodes.length; j++){
             if(getVin().charAt(1) == manufacturerCodes[j]){
                 setManufacturer(manufacturers[j]);
@@ -249,7 +243,7 @@ public class Motorcycle {
         setVis(vin.substring(10,16));
 
 
-        //More Recognition Warnings
+        //Building warning message indicating which attributes could not be decoded from VIN
         if(!recognitionWarnings.equals("")){
             JOptionPane.showMessageDialog(null, "Your VIN may not have been full recognized, you fill need to manually enter the following fields:\n\n" + recognitionWarnings, "VIN Decode Failed",
                     JOptionPane.INFORMATION_MESSAGE);
