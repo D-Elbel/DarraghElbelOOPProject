@@ -2,7 +2,7 @@ package Project;
 
 import java.util.GregorianCalendar;
 
-public class Part {
+public class Part{
 
     private String name;
     private String afterMarket;

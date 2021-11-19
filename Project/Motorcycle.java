@@ -31,6 +31,14 @@ public class Motorcycle {
         setPartList(partList);
     }
 
+    public String getCountryOfOrigin() {
+        return countryOfOrigin;
+    }
+
+    public void setCountryOfOrigin(String countryOfOrigin) {
+        this.countryOfOrigin = countryOfOrigin;
+    }
+
     public Motorcycle(String vin){
         setVin(vin);
     }
@@ -64,6 +72,7 @@ public class Motorcycle {
     }
 
     public void setManufacturer(String manufacturer) {
+
         this.manufacturer = manufacturer;
     }
 
@@ -72,7 +81,15 @@ public class Motorcycle {
     }
 
     public void setEngineDisplacement(int engineDisplacement) {
-        this.engineDisplacement = engineDisplacement;
+
+        if(engineDisplacement < 0){
+            JOptionPane.showMessageDialog(null, "Engine displacement must be greater than 0", "Invalid Displacement",
+                     JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            this.engineDisplacement = engineDisplacement;
+        }
+
     }
 
     public String getEngineType() {
@@ -113,13 +130,18 @@ public class Motorcycle {
 
     public void setVin(String vin) {
 
-       this.vin = vin;
+        this.vin = vin;
 
-       String recognitionWarnings = "";
+        boolean manufacturerSet = false;
+        boolean vdsSet = false;
+        boolean modelSet = false;
+        boolean yearSet = false;
+        boolean displacementSet = false;
+        boolean engineTypeSet = false;
 
+        String recognitionWarnings = "";
 
-
-        //Manufacturer Codes
+       //Manufacturer Codes
         char manufacturerCodes[] = {'S', 'Y', 'K', 'H'};
         String manufacturers[] = {"Suzuki", "Yamaha", "Kawasaki", "Honda"};
 
@@ -135,7 +157,7 @@ public class Motorcycle {
         1199,1299,1399,1499, 1500};
 
         //Engine Configuration Information
-        int suzukiEngineTypeCodes[] = {1, 2, 3, 4, 5, 7}; //Suzuki does not have an engine type with the designation '6'
+        char suzukiEngineTypeCodes[] = {'1', '2', '3', '4', '5', '7'}; //Suzuki does not have an engine type with the designation
         String suzukiEngineTypeValues[] = {"2-Stroke Single", "2-Stroke Twin", "2-Stroke Triple or Four", "4-Stroke Single",
         "4-Stroke Twin", "4-Stroke Four"};
 
@@ -144,16 +166,28 @@ public class Motorcycle {
         //Building warning message indicating which attributes could not be decoded from VIN
 
 
+
         if(getVin().charAt(0) != 'J'){
             recognitionWarnings += "Could Not Recognize Country Code";
         }
+        else{
+            setCountryOfOrigin("Japan");
+        }
 
         //Finding Manufacturer
+
+
         for(int j = 0; j < manufacturerCodes.length; j++){
             if(getVin().charAt(1) == manufacturerCodes[j]){
                 setManufacturer(manufacturers[j]);
+                manufacturerSet = true;
             }
         }
+
+        if(manufacturerSet == false){
+            recognitionWarnings+="Could not recognize manufacturer\n";
+        }
+
 
         //Finding model name from VDS
         String modelCodeVds = getVin().substring(3,6);
@@ -162,33 +196,64 @@ public class Motorcycle {
         for(int j = 0; j < suzukiModelCodes.length; j++){
             if(modelCodeVds.equals(suzukiModelCodes[j])){
                 setModelName(suzukiModelNames[j]);
+                modelSet = true;
             }
         }
 
+        if(modelSet == false){
+            recognitionWarnings+="Could not recognize model\n";
+        }
 
-/*
         //Handling numeric year code
+        //Don't actually -48, bug somewhere
         if(Character.isDigit(vin.charAt(9))){
-            setYearCode(2000 + vin.charAt(9));
+            setYearCode(2000 + vin.charAt(9) -48);
+            yearSet = true;
         }//Handling alphabetical year code, position in array + 10 + 2000;
         else{
             for(int i = 0; i < yearCodes.length; i++){
-                if(vin.charAt(i) == yearCodes[i]){
+                if(vin.charAt(9) == yearCodes[i]){
                     setYearCode(2000 + i + 10);
+                    yearSet = true;
                 }
             }
         }
+        if(yearSet == false){
+            recognitionWarnings+="Could not recognize year\n";
+        }
 
+        //Engine Displacement
+        for(int z = 0; z < suzukiDisplacementCodes.length; z++){
+            if(getVin().charAt(4) == suzukiDisplacementCodes[z]){
+                setEngineDisplacement(suzukiDisplacementValues[z]);
+                displacementSet = true;
+            }
+        }
+
+        if(displacementSet == false){
+            recognitionWarnings+="Could not recognize engine displacement\n";
+        }
+
+        //Engine Type
+        for(int z = 0; z < suzukiEngineTypeCodes.length; z++){
+            if(getVin().charAt(5) == suzukiEngineTypeCodes[z]){
+                setEngineType(suzukiEngineTypeValues[z]);
+                engineTypeSet = true;
+            }
+        }
+        if(engineTypeSet == false){
+            recognitionWarnings+="Could not recognize engine type\n";
+        }
+
+        //Set VIS
+        setVis(vin.substring(10,16));
+
+
+        //More Recognition Warnings
         if(!recognitionWarnings.equals("")){
             JOptionPane.showMessageDialog(null, "Your VIN may not have been full recognized, you fill need to manually enter the following fields:\n\n" + recognitionWarnings, "VIN Decode Failed",
                     JOptionPane.INFORMATION_MESSAGE);
         }
-
-        */
-        //System.out.println("Setting Vin");
-
-
-
     }
 
     public String getVis() {
@@ -210,34 +275,12 @@ public class Motorcycle {
                 ", yearCode=" + getYearCode() +
                 ", odometer=" + getOdometer() +
                 ", vis='" + getVis() + '\'' +
+                ", country of origin=" + getCountryOfOrigin() +
                // ", serviceHistory=" + Arrays.toString(serviceHistory) +
                // ", partList=" + Arrays.toString(partList) +
                 '}';
     }
 
-    public boolean validateVIN(String vin){
 
-        String visSerialCheck = "";
-
-        //Verifying length
-        if(vin.length() != 17){
-            JOptionPane.showMessageDialog(null, "VINs must be 17 characters in length", "Invalid Length", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-
-        //Verifying valid VIS format
-        visSerialCheck = vin.substring(10,16);
-
-        for(int i = 0; i < visSerialCheck.length(); i++){
-            if(Character.isDigit(visSerialCheck.charAt(i)) == false){
-                JOptionPane.showMessageDialog(null, "Motorcycle VIS be a numeric value six digits in length", "Invalid VIS Format", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-        }
-
-        return true;
-
-    }
 
 }
