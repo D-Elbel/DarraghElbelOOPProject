@@ -266,6 +266,15 @@ public class Motorcycle {
         }
     }
 
+    public void addService(Service serviceToAdd){
+        for(int j = 0; j < getServiceHistory().length; j++){
+            if(getServiceHistory()[j] == null){
+                getServiceHistory()[j] = serviceToAdd;
+                j = getServiceHistory().length;
+            }
+        }
+    }
+
     @Override
     public String toString() {
 
