@@ -281,6 +281,19 @@ public class Motorcycle {
             }
         }
 
+        String servicesOutput = "";
+        //Avoid null prints
+        for(int i = 0; i < serviceHistory.length; i++){
+            if(serviceHistory[i] != null){
+                servicesOutput+= serviceHistory[i].toString();
+            }
+            else{
+                //Terminating loop
+                i = serviceHistory.length;
+            }
+        }
+
+
         return "Motorcycle{" +
                 "vin='" + getVin() + '\'' +
                 ", modelName='" + getModelName() + '\'' +
@@ -291,7 +304,7 @@ public class Motorcycle {
                 ", odometer=" + getOdometer() +
                 ", vis='" + getVis() + '\'' +
                 ", country of origin=" + getCountryOfOrigin() +
-               // ", serviceHistory=" + Arrays.toString(serviceHistory) +
+                ", serviceHistory=" + servicesOutput +
                ", partList=" + partsOutput +
                 '}';
     }

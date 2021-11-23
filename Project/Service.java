@@ -1,5 +1,6 @@
 package Project;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Service{
@@ -14,6 +15,10 @@ public class Service{
         setDealerOrSelf(dealerOrSelf);
         setServiceNotes(serviceNotes);
         systemServiceNumber++;
+    }
+
+    public Service() {
+
     }
 
     public static int getSystemServiceNumber() {
@@ -42,5 +47,10 @@ public class Service{
 
     public void setServiceNotes(String serviceNotes) {
         this.serviceNotes = serviceNotes;
+    }
+
+    public String toString(){
+        return "\nService Type: " + getDealerOrSelf() + "\nService Date: " + getServiceDate().get(Calendar.DAY_OF_MONTH) + " "
+                + getServiceDate().get(Calendar.MONTH) + " " + getServiceDate().get(Calendar.YEAR) + "\nService Notes: " + getServiceNotes();
     }
 }
