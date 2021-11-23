@@ -39,8 +39,9 @@ public class Motorcycle {
         this.countryOfOrigin = countryOfOrigin;
     }
 
-    public Motorcycle(String vin){
+    public Motorcycle(String vin, Part partList[]){
         setVin(vin);
+        setPartList(partList);
     }
 
     public int getOdometer() {
@@ -55,8 +56,6 @@ public class Motorcycle {
         else{
             this.odometer = odometer;
         }
-
-
     }
 
     public String getModelName() {
@@ -258,8 +257,30 @@ public class Motorcycle {
         this.vis = vis;
     }
 
+    public void addPart(Part partToAdd){
+        for(int j = 0; j < getPartList().length; j++){
+            if(getPartList()[j] == null){
+                getPartList()[j] = partToAdd;
+                j = getPartList().length;
+            }
+        }
+    }
+
     @Override
     public String toString() {
+
+        String partsOutput = "";
+        //Avoid null prints
+        for(int i = 0; i < partList.length; i++){
+            if(partList[i] != null){
+                partsOutput+= partList[i].toString();
+            }
+            else{
+                //Terminating loop
+                i = partList.length;
+            }
+        }
+
         return "Motorcycle{" +
                 "vin='" + getVin() + '\'' +
                 ", modelName='" + getModelName() + '\'' +
@@ -271,7 +292,7 @@ public class Motorcycle {
                 ", vis='" + getVis() + '\'' +
                 ", country of origin=" + getCountryOfOrigin() +
                // ", serviceHistory=" + Arrays.toString(serviceHistory) +
-               // ", partList=" + Arrays.toString(partList) +
+               ", partList=" + partsOutput +
                 '}';
     }
 
