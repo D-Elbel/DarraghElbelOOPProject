@@ -65,7 +65,7 @@ public class TestMotorcycle {
 
         String name, description,installDateAsString;
         int installDay = 1, installMonth = 1, installYear = 1;
-        //GregorianCalendar installDate = null;
+        GregorianCalendar installDate = null;
 
         name = JOptionPane.showInputDialog(null, "Please enter part name", "Part Name", JOptionPane.QUESTION_MESSAGE);
         description = JOptionPane.showInputDialog(null, "Please enter part description", "Description", JOptionPane.QUESTION_MESSAGE);
@@ -73,31 +73,7 @@ public class TestMotorcycle {
         installDateAsString = JOptionPane.showInputDialog(null, "Please enter the date of install in the format 'Year-Month-Day", "Install Date", JOptionPane.QUESTION_MESSAGE);
             
         //Validating and setting part install date
-        if(!Character.isDigit(installDateAsString.substring(0,4).charAt(0)) || !Character.isDigit(installDateAsString.substring(0,4).charAt(1)) || !Character.isDigit(installDateAsString.substring(0,4).charAt(2)) || !Character.isDigit(installDateAsString.substring(0,4).charAt(3))){
-            JOptionPane.showMessageDialog(null, "Year is not valid, setting to default of 2000");
-            installYear = 2000;
-        }
-        else{
-            installYear = Integer.parseInt(installDateAsString.substring(0,4));
-        }
-
-        if(!Character.isDigit(installDateAsString.substring(5,7).charAt(0)) || !Character.isDigit(installDateAsString.substring(5,7).charAt(1))){
-            JOptionPane.showMessageDialog(null, "Month is not valid, setting to default of 1");
-            installMonth = 1;
-        }
-        else{
-            installMonth = Integer.parseInt(installDateAsString.substring(5,7));
-        }
-
-        if(!Character.isDigit(installDateAsString.substring(8,10).charAt(0)) || !Character.isDigit(installDateAsString.substring(8,10).charAt(1))){
-            JOptionPane.showMessageDialog(null, "Day is not valid, setting to default of 1");
-            installDay = 1;
-        }
-        else{
-            installDay = Integer.parseInt(installDateAsString.substring(8,10));
-        }
-
-        GregorianCalendar installDate = new GregorianCalendar(installYear, installMonth, installDay);
+        installDate = getDateString(installDateAsString);
 
         Part partAdd = new Part();
 
@@ -112,7 +88,7 @@ public class TestMotorcycle {
 
         String serviceNotes, dealerOrSelf,serviceDateAsString;
         int serviceDay = 1, serviceMonth = 1, serviceYear = 1;
-        //GregorianCalendar installDate = null;
+        GregorianCalendar installDate = null;
 
         serviceNotes = JOptionPane.showInputDialog(null, "Please enter any service notes you have", "Part Name", JOptionPane.QUESTION_MESSAGE);
 
@@ -139,6 +115,22 @@ public class TestMotorcycle {
         }
 
         //Validating and setting part install date
+        installDate = getDateString(serviceDateAsString);
+        //GregorianCalendar installDate;
+
+        Service newService = new Service();
+
+        newService.setServiceDate(installDate);
+        newService.setServiceNotes(serviceNotes);
+        newService.setDealerOrSelf(dealerOrSelf);
+
+        return newService;
+    }
+
+    private static GregorianCalendar getDateString(String serviceDateAsString) {
+        int serviceYear;
+        int serviceMonth;
+        int serviceDay;
         if(!Character.isDigit(serviceDateAsString.substring(0,4).charAt(0)) || !Character.isDigit(serviceDateAsString.substring(0,4).charAt(1)) || !Character.isDigit(serviceDateAsString.substring(0,4).charAt(2)) || !Character.isDigit(serviceDateAsString.substring(0,4).charAt(3))){
             JOptionPane.showMessageDialog(null, "Year is not valid, setting to default of 2000");
             serviceYear = 2000;
@@ -165,12 +157,6 @@ public class TestMotorcycle {
 
         GregorianCalendar installDate = new GregorianCalendar(serviceYear, serviceMonth, serviceDay);
 
-        Service newService = new Service();
-
-        newService.setServiceDate(installDate);
-        newService.setServiceNotes(serviceNotes);
-        newService.setDealerOrSelf(dealerOrSelf);
-
-        return newService;
+        return installDate;
     }
 }
