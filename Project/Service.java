@@ -1,9 +1,10 @@
 package Project;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Service{
+public class Service implements Serializable {
 
     private static int systemServiceNumber;
     private GregorianCalendar serviceDate;

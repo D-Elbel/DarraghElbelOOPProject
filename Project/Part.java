@@ -1,9 +1,10 @@
 package Project;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Part{
+public class Part implements Serializable {
 
     private String name;
     private String description;

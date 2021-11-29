@@ -7,13 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MotorcycleApp extends JFrame implements ActionListener {
 
     private JMenu addMotorcycle;
     private JMenu viewMotorcycle;
     private JLabel response;
-
+    private JTextField vin, manufacturer, engineSize, year, engineType, country, odometer, model;
+    private JPanel testPanel;
 
     TitledBorder titledBorder;
     ArrayList<Motorcycle> motorcycles = new ArrayList<>();
@@ -26,43 +28,103 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        menuBar.setBackground(Color.yellow);
+        menuBar.setBackground(Color.lightGray);
         menuBar.add(addMotorcycle);
         menuBar.add(viewMotorcycle);
 
         response = new JLabel("Menu Tester" );
         add(response);
 
-        setTitle("Motorcycle Management");
+        setTitle("My Motorcycle Manager");
         setSize(650, 480);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-       // Container cPane = getContentPane();
-        setLayout(new GridBagLayout());
-        setVisible(true);
 
+        vin = new JTextField();
+        vin.setEditable(false);
+
+        manufacturer = new JTextField();
+        manufacturer.setEditable(false);
+
+        engineSize = new JTextField();
+        engineSize.setEditable(false);
+
+        year = new JTextField();
+        year.setEditable(false);
+
+        engineType = new JTextField();
+        engineType.setEditable(false);
+
+        country = new JTextField();
+        country.setEditable(false);
+
+        odometer = new JTextField();
+        odometer.setEditable(false);
+
+        model = new JTextField();
+        model.setEditable(false);
+
+        testPanel = new JPanel();
+        testPanel.setLayout(new FlowLayout());
+
+        testPanel.add(vin);
+        testPanel.add(manufacturer);
+        testPanel.add(engineSize);
+        testPanel.add(engineType);
+        testPanel.add(country);
+        testPanel.add(odometer);
+        testPanel.add(model);
+        //testPanel.setVisible(true);
+        add(testPanel);
+
+
+       // Container cPane = getContentPane();
+        setLayout(new FlowLayout());
+        this.setVisible(true);
+        testPanel.setVisible(false);
         open();
 
     }
 
+
+
     public void actionPerformed(ActionEvent event){
-        String menuName;
+        String menuName, display;
         menuName = event.getActionCommand();
 
         System.out.print(menuName);
 
-        if(menuName.equals("New VIN")){
-            addMotorcycleByVin();
+        if(menuName.equals("Add Via VIN")){
+            try {
+                addMotorcycleByVin();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Test");
+        }
+
+        if(menuName.equals("View List")){
+            //display = motorcycles;
+            displayMotorcycles();
+            //response.setText(motorcycles.toString());
+
+
         }
 
         if(menuName.equals("Quit")){
             System.exit(0);
         }
-        else{
-            response.setText("Menu Item " + menuName + " is selected.");
-        }
+        //else{
+         //   response.setText("Menu Item " + menuName + " is selected.");
+        //}
+
+
+
+        //Combobox stuff
+
+
     }
 
     private void createAddMenu() {
@@ -70,7 +132,12 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         JMenuItem item;
 
         addMotorcycle = new JMenu("Add Motorcycles");
-        item = new JMenuItem("New VIN");
+
+        item = new JMenuItem("Add Via VIN");
+        item.addActionListener(this);
+        addMotorcycle.add(item);
+
+        item = new JMenuItem("Add Without VIN");
         item.addActionListener(this);
         addMotorcycle.add(item);
     }
@@ -90,6 +157,51 @@ public class MotorcycleApp extends JFrame implements ActionListener {
     public static void main(String[] args) {
         MotorcycleApp frame = new MotorcycleApp();
     }
+
+    public void save() throws IOException {
+
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("motorcycles.dat"));
+        os.writeObject(motorcycles);
+        os.close();
+    }
+
+
+    public void displayMotorcycles() {
+        JComboBox motorcycleCombo = new JComboBox();
+
+        motorcycleCombo.addActionListener(this);
+
+        JTextArea output = new JTextArea();
+
+        output.setText("Motorcycle Details:\n\n");
+
+        if(motorcycles.size() < 1) {
+            JOptionPane.showMessageDialog(null,"No motorcycles have been added to the system","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else {
+            Iterator<Motorcycle> iterator = motorcycles.iterator();
+
+            while(iterator.hasNext()) {
+                motorcycleCombo.addItem(iterator.next().getVin() + "\n");
+            }
+
+            JOptionPane.showMessageDialog(null,motorcycleCombo,"Select your motorcycle to view details",JOptionPane.PLAIN_MESSAGE);
+
+            int selected = motorcycleCombo.getSelectedIndex();
+            output.append(motorcycles.get(selected).toString());
+
+            JOptionPane.showMessageDialog(null,output,"Motorcycle Details",JOptionPane.PLAIN_MESSAGE);
+
+            testPanel.setVisible(true);
+            vin.setText(motorcycles.get(selected).getVin());
+            manufacturer.setText(motorcycles.get(selected).getManufacturer());
+            engineSize.setText(Integer.toString(motorcycles.get(selected).getEngineDisplacement()));
+            model.setText(motorcycles.get(selected).getModelName());
+        }
+
+
+    }
+
 
     public void open() {
         try {
@@ -122,7 +234,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         }
     }
 
-    public void addMotorcycleByVin(){
+    public void addMotorcycleByVin() throws IOException {
 
         String vinToAdd;
         boolean isvalid;
@@ -145,6 +257,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             motorcycles.add(m1);
         }
 
+        save();
 
     }
 

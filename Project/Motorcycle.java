@@ -1,9 +1,10 @@
 package Project;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Motorcycle {
+public class Motorcycle implements Serializable {
 
     private String vin;
     private String modelName;
