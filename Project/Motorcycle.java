@@ -217,9 +217,11 @@ public class Motorcycle implements Serializable {
             }
 
             //Handling numeric year code
-            //Don't actually -48, bug somewhere
             if(Character.isDigit(vin.charAt(9))){
-                setYearCode(2000 + vin.charAt(9) -48);
+                String testYear = vin.substring(8,9);
+                //Help from Deirdre Lee solving issue parsing character
+                setYearCode(2000 + Integer.parseInt(testYear));
+                System.out.println(getYearCode());
                 yearSet = true;
             }//Handling alphabetical year code, position in array + 10 + 2000;
             else{
