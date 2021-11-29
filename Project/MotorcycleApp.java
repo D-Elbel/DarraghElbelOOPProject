@@ -32,7 +32,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         menuBar.add(addMotorcycle);
         menuBar.add(viewMotorcycle);
 
-        response = new JLabel("Menu Tester" );
+        response = new JLabel("Motorcycle Details: " );
         add(response);
 
         setTitle("My Motorcycle Manager");
@@ -105,25 +105,24 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             System.out.println("Test");
         }
 
+        if(menuName.equals("Add Without VIN")){
+            try {
+                addMotorcycleWithoutVin();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Test");
+        }
+
         if(menuName.equals("View List")){
             //display = motorcycles;
             displayMotorcycles();
             //response.setText(motorcycles.toString());
-
-
         }
 
         if(menuName.equals("Quit")){
             System.exit(0);
         }
-        //else{
-         //   response.setText("Menu Item " + menuName + " is selected.");
-        //}
-
-
-
-        //Combobox stuff
-
 
     }
 
@@ -182,7 +181,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             Iterator<Motorcycle> iterator = motorcycles.iterator();
 
             while(iterator.hasNext()) {
-                motorcycleCombo.addItem(iterator.next().getVin() + "\n");
+                motorcycleCombo.addItem(iterator.next().getModelName() + "\n");
             }
 
             JOptionPane.showMessageDialog(null,motorcycleCombo,"Select your motorcycle to view details",JOptionPane.PLAIN_MESSAGE);
@@ -193,12 +192,13 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null,output,"Motorcycle Details",JOptionPane.PLAIN_MESSAGE);
 
             testPanel.setVisible(true);
+
+
             vin.setText(motorcycles.get(selected).getVin());
             manufacturer.setText(motorcycles.get(selected).getManufacturer());
             engineSize.setText(Integer.toString(motorcycles.get(selected).getEngineDisplacement()));
             model.setText(motorcycles.get(selected).getModelName());
         }
-
 
     }
 
@@ -246,9 +246,6 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
         isvalid = validateVIN(vinToAdd);
 
-        //partArray[0] = addPartDriver();
-        //serviceArray[0] = addServiceDriver();
-
         if(isvalid){
             Motorcycle m1 = new Motorcycle(vinToAdd, partArray);
             m1.setPartList(partArray);
@@ -256,6 +253,53 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             System.out.println(m1.toString());
             motorcycles.add(m1);
         }
+
+        save();
+
+    }
+
+    public void addMotorcycleWithoutVin() throws IOException {
+
+        //Adding a motorcycle through JOption Panes, need to work on error messages associated with not inputted fields.
+        Motorcycle mToAdd = new Motorcycle();
+
+        Part partArray[] = new Part[100];
+        Service serviceArray[] = new Service[100];
+
+        mToAdd.setServiceHistory(serviceArray);
+        mToAdd.setPartList(partArray);
+
+        String modelname, manufacturer, countryOfOrigin;
+        int engineDisplacement, yearCode, odometer;
+
+        modelname = JOptionPane.showInputDialog(null, "Please enter the model name of your motorcycle: ", "Model Name",
+                JOptionPane.QUESTION_MESSAGE);
+
+        manufacturer = JOptionPane.showInputDialog(null, "Please enter the manufacturer of the motorcycle: ", "Manufacturer Name",
+                JOptionPane.QUESTION_MESSAGE);
+
+        countryOfOrigin = JOptionPane.showInputDialog(null, "Please enter the motorcycle's country of origin: ", "Country",
+                JOptionPane.QUESTION_MESSAGE);
+
+        engineDisplacement = Integer.parseInt(JOptionPane.showInputDialog(null, "Please enter the motorcycle's engine displacement: ", "Engine Size",
+                JOptionPane.QUESTION_MESSAGE));
+
+        yearCode = Integer.parseInt(JOptionPane.showInputDialog(null, "Please enter the year of registration ", "Year",
+                JOptionPane.QUESTION_MESSAGE));
+
+        odometer = Integer.parseInt(JOptionPane.showInputDialog(null, "Please enter the motorcycle's current odometer reading ", "Odometer",
+                JOptionPane.QUESTION_MESSAGE));
+
+        mToAdd.setModelName(modelname);
+        mToAdd.setManufacturer(manufacturer);
+        mToAdd.setCountryOfOrigin(countryOfOrigin);
+        mToAdd.setEngineDisplacement(engineDisplacement);
+        mToAdd.setYearCode(yearCode);
+        mToAdd.setOdometer(odometer);
+
+        mToAdd.setVin("00000000000000000");
+
+        motorcycles.add(mToAdd);
 
         save();
 
