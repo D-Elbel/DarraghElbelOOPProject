@@ -112,6 +112,12 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
         System.out.print(menuName);
 
+        System.out.print(event.getSource().toString());
+
+        if(event.getSource().equals(frame2)){
+            frame2.dispose();
+        }
+
         if(menuName.equals("Add Via VIN")){
 
                 frame2.setVisible(true);
@@ -188,6 +194,10 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         os.close();
     }
 
+    public void closeFrame(){
+        frame2.dispose();
+
+    }
 
     public void displayMotorcycles() {
         JComboBox motorcycleCombo = new JComboBox();
@@ -226,10 +236,6 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
     }
 
-    public void openLight(){
-
-
-    }
 
     public void open() {
         try {

@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class AddWithoutVinForm {
+public class AddWithoutVinForm extends MotorcycleApp {
 
     private JPanel panel1;
     private JPanel panel2;
@@ -32,7 +32,7 @@ public class AddWithoutVinForm {
 
     public AddWithoutVinForm() {
 
-        open();
+        open1();
 
         addWithoutVinButton.addActionListener(new ActionListener() {
             @Override
@@ -60,8 +60,9 @@ public class AddWithoutVinForm {
                 motorcycles.add(bikeToAdd);
 
                 try {
-                    save();
+                    save1();
                     headerLabel.setText("Added, please add another or close window.");
+                    AddWithoutVinForm.super.closeFrame();
 
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -72,6 +73,8 @@ public class AddWithoutVinForm {
                 engineSizeString.setText("");
                 yearString.setText("");
                 countryOfOriginString.setText("");
+
+                addWithoutVinButton.setActionCommand("Motorcycle Added");
             }
         });
 
@@ -101,6 +104,7 @@ public class AddWithoutVinForm {
 
                 try {
                     save();
+
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -109,6 +113,7 @@ public class AddWithoutVinForm {
             }
         });
     }
+
 
     public static boolean validateVIN(String vin) {
 
@@ -133,7 +138,7 @@ public class AddWithoutVinForm {
     }
 
 
-    public void open() {
+    public void open1() {
         try {
 
             File file = new File("motorcycles.dat");
@@ -161,7 +166,7 @@ public class AddWithoutVinForm {
         }
     }
 
-    public void save() throws IOException {
+    public void save1() throws IOException {
 
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("motorcycles.dat"));
         os.writeObject(motorcycles);
