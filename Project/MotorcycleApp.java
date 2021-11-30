@@ -11,17 +11,21 @@ import java.util.Iterator;
 
 public class MotorcycleApp extends JFrame implements ActionListener {
 
+    private static JFrame frame2;
     private JMenu addMotorcycle;
     private JMenu viewMotorcycle;
     private JLabel response;
-    private JTextField vin, manufacturer, engineSize, year, engineType, country, odometer, model;
-    private JPanel testPanel;
+    private JTextField vin, manufacturer, engineSize, year, engineType, country, odometer, model,
+    addVin, addManufacturer, addEngineSize, addYear, addEngineType, addCountry, addOdometer;
+    private JPanel testPanel, leftPanel, addWithoutVinPanel;
+
 
     TitledBorder titledBorder;
     ArrayList<Motorcycle> motorcycles = new ArrayList<>();
     private Motorcycle motorcycle;
 
     public MotorcycleApp(){
+
 
         createAddMenu();
         createViewMenu();
@@ -33,7 +37,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         menuBar.add(viewMotorcycle);
 
         response = new JLabel("Motorcycle Details: " );
-        add(response);
+        //add(response);
 
         setTitle("My Motorcycle Manager");
         setSize(650, 480);
@@ -69,6 +73,13 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         testPanel = new JPanel();
         testPanel.setLayout(new FlowLayout());
 
+        addWithoutVinPanel = new JPanel();
+
+        addVin = new JTextField();
+        addVin.setEditable(true);
+        addWithoutVinPanel.add(addVin);
+        //addWithoutVinPanel.setLayout(new BoxLayout(testPanel,BoxLayout.X_AXIS));
+
         testPanel.add(vin);
         testPanel.add(manufacturer);
         testPanel.add(engineSize);
@@ -76,15 +87,20 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         testPanel.add(country);
         testPanel.add(odometer);
         testPanel.add(model);
+        testPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         //testPanel.setVisible(true);
         add(testPanel);
+        add(addWithoutVinPanel);
+
 
 
        // Container cPane = getContentPane();
-        setLayout(new FlowLayout());
+        setLayout(new BorderLayout(2,2));
         this.setVisible(true);
         testPanel.setVisible(false);
-        open();
+        addWithoutVinPanel.setVisible(false);
+
+        //open();
 
     }
 
@@ -97,25 +113,22 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         System.out.print(menuName);
 
         if(menuName.equals("Add Via VIN")){
-            try {
-                addMotorcycleByVin();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+                frame2.setVisible(true);
+
             System.out.println("Test");
         }
 
         if(menuName.equals("Add Without VIN")){
-            try {
-                addMotorcycleWithoutVin();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+                frame2.setVisible(true);
+
             System.out.println("Test");
         }
 
         if(menuName.equals("View List")){
-            //display = motorcycles;
+
+            open();//display = motorcycles;
             displayMotorcycles();
             //response.setText(motorcycles.toString());
         }
@@ -155,6 +168,17 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         MotorcycleApp frame = new MotorcycleApp();
+
+        frame2 = new JFrame("Add Motorcycle");
+
+        AddWithoutVinForm gui = new AddWithoutVinForm();
+
+        frame2.add(gui.getPanel1());
+
+        frame2.setSize(400, 400);
+        frame2.setVisible(false);
+
+
     }
 
     public void save() throws IOException {
@@ -202,6 +226,10 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
     }
 
+    public void openLight(){
+
+
+    }
 
     public void open() {
         try {
@@ -234,29 +262,6 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         }
     }
 
-    public void addMotorcycleByVin() throws IOException {
-
-        String vinToAdd;
-        boolean isvalid;
-
-        Part partArray[] = new Part[100];
-        Service serviceArray[] = new Service[100];
-
-        vinToAdd = JOptionPane.showInputDialog(null, "Please enter VIN", "Input", JOptionPane.QUESTION_MESSAGE);
-
-        isvalid = validateVIN(vinToAdd);
-
-        if(isvalid){
-            Motorcycle m1 = new Motorcycle(vinToAdd, partArray);
-            m1.setPartList(partArray);
-            m1.setServiceHistory(serviceArray);
-            System.out.println(m1.toString());
-            motorcycles.add(m1);
-        }
-
-        save();
-
-    }
 
     public void addMotorcycleWithoutVin() throws IOException {
 
@@ -301,30 +306,11 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
         motorcycles.add(mToAdd);
 
+        addWithoutVinPanel.setVisible(true);
+
         save();
 
     }
 
-    public static boolean validateVIN(String vin){
-
-        String visSerialCheck = "";
-
-        //Verifying length
-        if(vin.length() != 17){
-            JOptionPane.showMessageDialog(null, "VINs must be 17 characters in length", "Invalid Length", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        //Verifying valid VIS format
-        visSerialCheck = vin.substring(10,17);
-
-        for(int i = 0; i < visSerialCheck.length(); i++){
-            if(Character.isDigit(visSerialCheck.charAt(i)) == false){
-                JOptionPane.showMessageDialog(null, "Motorcycle VIS be a numeric value six digits in length", "Invalid VIS Format", JOptionPane.ERROR_MESSAGE);
-                return false;
-            }
-        }
-        return true;
-    }
 
 }
