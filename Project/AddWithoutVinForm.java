@@ -83,7 +83,6 @@ public class AddWithoutVinForm extends MotorcycleApp {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
                 String vinToAdd;
                 boolean isvalid;
 
@@ -108,8 +107,6 @@ public class AddWithoutVinForm extends MotorcycleApp {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-
-
             }
         });
     }
