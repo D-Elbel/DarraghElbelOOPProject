@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 public class MotorcycleApp extends JFrame implements ActionListener {
 
-    private static JFrame frame2;
+    private static JFrame addMotorcycleFrame, frame;
     private JMenu addMotorcycle;
     private JMenu viewMotorcycle;
     private JLabel response;
@@ -100,7 +100,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         testPanel.setVisible(false);
         addWithoutVinPanel.setVisible(false);
 
-        //open();
+        open();
 
     }
 
@@ -114,27 +114,27 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
         System.out.print(event.getSource().toString());
 
-        if(event.getSource().equals(frame2)){
-            frame2.dispose();
+        if(event.getSource().equals(addMotorcycleFrame)){
+            addMotorcycleFrame.dispose();
         }
 
         if(menuName.equals("Add Via VIN")){
 
-                frame2.setVisible(true);
+                addMotorcycleFrame.setVisible(true);
 
             System.out.println("Test");
         }
 
         if(menuName.equals("Add Without VIN")){
 
-                frame2.setVisible(true);
+                addMotorcycleFrame.setVisible(true);
 
             System.out.println("Test");
         }
 
         if(menuName.equals("View List")){
 
-            open();//display = motorcycles;
+            //open();//display = motorcycles;
             displayMotorcycles();
             //response.setText(motorcycles.toString());
         }
@@ -173,16 +173,17 @@ public class MotorcycleApp extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        MotorcycleApp frame = new MotorcycleApp();
 
-        frame2 = new JFrame("Add Motorcycle");
+        //MotorcycleApp frame = new MotorcycleApp();
+
+        addMotorcycleFrame = new JFrame("Add Motorcycle");
 
         AddWithoutVinForm gui = new AddWithoutVinForm();
 
-        frame2.add(gui.getPanel1());
+        addMotorcycleFrame.add(gui.getPanel1());
 
-        frame2.setSize(400, 400);
-        frame2.setVisible(false);
+        addMotorcycleFrame.setSize(400, 400);
+        addMotorcycleFrame.setVisible(false);
 
 
     }
@@ -194,9 +195,8 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         os.close();
     }
 
-    public void closeFrame(){
-        frame2.dispose();
-
+    public void closeFrame() throws IOException {
+        addMotorcycleFrame.dispose();
     }
 
     public void displayMotorcycles() {

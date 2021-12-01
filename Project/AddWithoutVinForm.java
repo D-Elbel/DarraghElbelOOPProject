@@ -27,17 +27,13 @@ public class AddWithoutVinForm extends MotorcycleApp {
 
     Motorcycle bikeToAdd = new Motorcycle();
 
-    ArrayList<Motorcycle> motorcycles = new ArrayList<>();
     private Motorcycle motorcycle;
 
     public AddWithoutVinForm() {
 
-        open1();
-
         addWithoutVinButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
 
                 JOptionPane.showMessageDialog(null, "Motorcycle Added", "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -57,12 +53,14 @@ public class AddWithoutVinForm extends MotorcycleApp {
 
                 bikeToAdd.setVin("00000000000000000");
 
-                motorcycles.add(bikeToAdd);
+               AddWithoutVinForm.super.motorcycles.add(bikeToAdd);
 
-                try {
-                    save1();
-                    headerLabel.setText("Added, please add another or close window.");
-                    AddWithoutVinForm.super.closeFrame();
+
+               try {
+                   AddWithoutVinForm.super.save();
+                   //save1();
+                   headerLabel.setText("Added, please add another or close window.");
+                   AddWithoutVinForm.super.closeFrame();
 
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -98,11 +96,12 @@ public class AddWithoutVinForm extends MotorcycleApp {
                     m1.setPartList(partArray);
                     m1.setServiceHistory(serviceArray);
                     System.out.println(m1.toString());
+
                     motorcycles.add(m1);
                 }
 
                 try {
-                    save();
+                    AddWithoutVinForm.super.save();
 
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -132,42 +131,6 @@ public class AddWithoutVinForm extends MotorcycleApp {
             }
         }
         return true;
-    }
-
-
-    public void open1() {
-        try {
-
-            File file = new File("motorcycles.dat");
-
-            if (file.exists()) {
-
-                ObjectInputStream is = new ObjectInputStream(new FileInputStream(file));
-                motorcycles = (ArrayList<Motorcycle>) is.readObject();
-                is.close();
-
-                // JOptionPane.showMessageDialog(null, file.getName() + " file loaded into the system", "Open", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                file.createNewFile();
-                // JOptionPane.showMessageDialog(null, "File just created!!", "Created " + file.getName() + " file", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (ClassNotFoundException cce) {
-            JOptionPane.showMessageDialog(null, "Class of object deserialised not a match for anything used in this application", "Error", JOptionPane.ERROR_MESSAGE);
-            cce.printStackTrace();
-        } catch (FileNotFoundException fnfe) {
-            JOptionPane.showMessageDialog(null, "File not found", "Error", JOptionPane.ERROR_MESSAGE);
-            fnfe.printStackTrace();
-        } catch (IOException ioe) {
-            JOptionPane.showMessageDialog(null, "Problem reading from the file", "Error", JOptionPane.ERROR_MESSAGE);
-            ioe.printStackTrace();
-        }
-    }
-
-    public void save1() throws IOException {
-
-        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("motorcycles.dat"));
-        os.writeObject(motorcycles);
-        os.close();
     }
 
     public JPanel getPanel1() {
