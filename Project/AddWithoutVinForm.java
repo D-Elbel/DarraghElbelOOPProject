@@ -53,14 +53,14 @@ public class AddWithoutVinForm extends MotorcycleApp {
 
                 bikeToAdd.setVin("00000000000000000");
 
-               AddWithoutVinForm.super.motorcycles.add(bikeToAdd);
+                AddWithoutVinForm.super.motorcycles.add(bikeToAdd);
 
 
-               try {
-                   AddWithoutVinForm.super.save();
-                   //save1();
-                   headerLabel.setText("Added, please add another or close window.");
-                   AddWithoutVinForm.super.closeFrame();
+                try {
+                    AddWithoutVinForm.super.save();
+                    //save1();
+                    headerLabel.setText("Added, please add another or close window.");
+                    AddWithoutVinForm.super.closeFrame();
 
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -157,28 +157,11 @@ public class AddWithoutVinForm extends MotorcycleApp {
         panel2 = new JPanel();
         panel2.setLayout(new GridBagLayout());
         panel1.add(panel2, BorderLayout.NORTH);
-        headerLabel = new JLabel();
-        Font headerLabelFont = this.$$$getFont$$$("Lucida Sans", Font.BOLD, 16, headerLabel.getFont());
-        if (headerLabelFont != null) headerLabel.setFont(headerLabelFont);
-        headerLabel.setText("Please Add Your Motorcycle Details");
+        vinEntry = new JTextField();
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.insets = new Insets(20, 0, 0, 0);
-        panel2.add(headerLabel, gbc);
-        final JPanel spacer1 = new JPanel();
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        panel2.add(spacer1, gbc);
-        vinEntry = new JTextField();
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel2.add(vinEntry, gbc);
         addViaVINButton = new JButton();
@@ -188,6 +171,16 @@ public class AddWithoutVinForm extends MotorcycleApp {
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel2.add(addViaVINButton, gbc);
+        headerLabel = new JLabel();
+        Font headerLabelFont = this.$$$getFont$$$("Lucida Sans", Font.BOLD, 16, headerLabel.getFont());
+        if (headerLabelFont != null) headerLabel.setFont(headerLabelFont);
+        headerLabel.setText("Please Add Your Motorcycle Details");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(20, 0, 0, 0);
+        panel2.add(headerLabel, gbc);
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridBagLayout());
         panel1.add(panel3, BorderLayout.SOUTH);
@@ -199,18 +192,18 @@ public class AddWithoutVinForm extends MotorcycleApp {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(0, 0, 30, 0);
         panel3.add(addWithoutVinButton, gbc);
-        final JPanel spacer2 = new JPanel();
+        final JPanel spacer1 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        panel3.add(spacer2, gbc);
-        final JPanel spacer3 = new JPanel();
+        panel3.add(spacer1, gbc);
+        final JPanel spacer2 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.VERTICAL;
-        panel3.add(spacer3, gbc);
+        panel3.add(spacer2, gbc);
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridBagLayout());
         panel1.add(panel4, BorderLayout.CENTER);
@@ -221,12 +214,12 @@ public class AddWithoutVinForm extends MotorcycleApp {
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.EAST;
         panel4.add(label1, gbc);
-        final JPanel spacer4 = new JPanel();
+        final JPanel spacer3 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        panel4.add(spacer4, gbc);
+        panel4.add(spacer3, gbc);
         manufacturerString = new JTextField();
         manufacturerString.setColumns(20);
         gbc = new GridBagConstraints();
@@ -348,10 +341,6 @@ public class AddWithoutVinForm extends MotorcycleApp {
     public void createUIComponents() {
         // TODO: place custom component creation code here
         // hard-coding in some current pet data
-        manufacturerString.setText("Jasper");
-        modelString.setText("Joe Bloggs");
-        engineSizeString.setText("Ballyporeen");
-        yearString.setText("03-05-2015");
-        engineTypeString.setText("087-1234567");
+
     }
 }

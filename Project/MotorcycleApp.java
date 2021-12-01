@@ -7,13 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 public class MotorcycleApp extends JFrame implements ActionListener {
 
-    private static JFrame addMotorcycleFrame, frame;
+    private static JFrame addMotorcycleFrame, frame, addServiceFrame;
     private JMenu addMotorcycle;
     private JMenu viewMotorcycle;
+    private JMenu addService;
     private JLabel response;
     private JTextField vin, manufacturer, engineSize, year, engineType, country, odometer, model,
     addVin, addManufacturer, addEngineSize, addYear, addEngineType, addCountry, addOdometer;
@@ -29,12 +31,14 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
         createAddMenu();
         createViewMenu();
+        createAddServiceMenu();
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         menuBar.setBackground(Color.lightGray);
         menuBar.add(addMotorcycle);
         menuBar.add(viewMotorcycle);
+        menuBar.add(addService);
 
         response = new JLabel("Motorcycle Details: " );
         //add(response);
@@ -96,15 +100,13 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
        // Container cPane = getContentPane();
         setLayout(new BorderLayout(2,2));
-        this.setVisible(true);
+        //this.setVisible(true);
         testPanel.setVisible(false);
         addWithoutVinPanel.setVisible(false);
 
         open();
 
     }
-
-
 
     public void actionPerformed(ActionEvent event){
         String menuName, display;
@@ -120,9 +122,29 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
         if(menuName.equals("Add Via VIN")){
 
-                addMotorcycleFrame.setVisible(true);
+            addMotorcycleFrame = new JFrame("Add Motorcycle");
+            AddWithoutVinForm gui = new AddWithoutVinForm();
+            addMotorcycleFrame.add(gui.getPanel1());
+            addMotorcycleFrame.setLocationRelativeTo(null);
+            addMotorcycleFrame.setSize(400, 400);
+            addMotorcycleFrame.setVisible(false);
+
+
+            addMotorcycleFrame.setVisible(true);
 
             System.out.println("Test");
+        }
+
+        if(menuName.equals("Add Service")){
+            System.out.print("\n\n\n\ntest\n\n\n");
+
+            addServiceFrame = new JFrame("Add Service");
+            AddServiceForm serviceGui = new AddServiceForm();
+            addServiceFrame.add(serviceGui.getPanel1());
+            addServiceFrame.setLocationRelativeTo(null);
+            addServiceFrame.setSize(450,500);
+            addServiceFrame.setVisible(true);
+
         }
 
         if(menuName.equals("Add Without VIN")){
@@ -134,6 +156,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
         if(menuName.equals("View List")){
 
+            open();
             //open();//display = motorcycles;
             displayMotorcycles();
             //response.setText(motorcycles.toString());
@@ -169,22 +192,42 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
         viewMotorcycle.add(item);
 
-
     }
+
+    private void createAddServiceMenu() {
+        JMenuItem item;
+
+        addService = new JMenu("Add Service");
+
+        item = new JMenuItem("Add Service");
+        item.addActionListener(this);
+        addService.add(item);
+
+      //  item = new JMenuItem("Add Without VIN");
+        //item.addActionListener(this);
+        //addService.add(item);
+    }
+
 
     public static void main(String[] args) {
 
-        //MotorcycleApp frame = new MotorcycleApp();
+        MotorcycleApp frame = new MotorcycleApp();
 
-        addMotorcycleFrame = new JFrame("Add Motorcycle");
+        frame.setVisible(true);
 
+    /*    addMotorcycleFrame = new JFrame("Add Motorcycle");
         AddWithoutVinForm gui = new AddWithoutVinForm();
-
         addMotorcycleFrame.add(gui.getPanel1());
-
+        addMotorcycleFrame.setLocationRelativeTo(null);
         addMotorcycleFrame.setSize(400, 400);
         addMotorcycleFrame.setVisible(false);
 
+
+        addServiceFrame = new JFrame("Add Service");
+        AddServiceForm serviceGui = new AddServiceForm();
+        addServiceFrame.add(serviceGui.getPanel1());
+        addServiceFrame.setLocationRelativeTo(null);
+        addMotorcycleFrame.setVisible(false); */
 
     }
 
@@ -197,6 +240,10 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
     public void closeFrame() throws IOException {
         addMotorcycleFrame.dispose();
+    }
+
+    public void closeServiceFrame() throws IOException {
+        addServiceFrame.dispose();
     }
 
     public void displayMotorcycles() {
@@ -318,5 +365,37 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
     }
 
+    public GregorianCalendar getDateString(String serviceDateAsString) {
+        int serviceYear;
+        int serviceMonth;
+        int serviceDay;
+        if(!Character.isDigit(serviceDateAsString.substring(0,4).charAt(0)) || !Character.isDigit(serviceDateAsString.substring(0,4).charAt(1)) || !Character.isDigit(serviceDateAsString.substring(0,4).charAt(2)) || !Character.isDigit(serviceDateAsString.substring(0,4).charAt(3))){
+            JOptionPane.showMessageDialog(null, "Year is not valid, setting to default of 2000");
+            serviceYear = 2000;
+        }
+        else{
+            serviceYear = Integer.parseInt(serviceDateAsString.substring(0,4));
+        }
+
+        if(!Character.isDigit(serviceDateAsString.substring(5,7).charAt(0)) || !Character.isDigit(serviceDateAsString.substring(5,7).charAt(1))){
+            JOptionPane.showMessageDialog(null, "Month is not valid, setting to default of 1");
+            serviceMonth = 1;
+        }
+        else{
+            serviceMonth = Integer.parseInt(serviceDateAsString.substring(5,7));
+        }
+
+        if(!Character.isDigit(serviceDateAsString.substring(8,10).charAt(0)) || !Character.isDigit(serviceDateAsString.substring(8,10).charAt(1))){
+            JOptionPane.showMessageDialog(null, "Day is not valid, setting to default of 1");
+            serviceDay = 1;
+        }
+        else{
+            serviceDay = Integer.parseInt(serviceDateAsString.substring(8,10));
+        }
+
+        GregorianCalendar installDate = new GregorianCalendar(serviceYear, serviceMonth, serviceDay);
+
+        return installDate;
+    }
 
 }

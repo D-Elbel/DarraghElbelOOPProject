@@ -73,7 +73,7 @@ public class TestMotorcycle {
         installDateAsString = JOptionPane.showInputDialog(null, "Please enter the date of install in the format 'Year-Month-Day", "Install Date", JOptionPane.QUESTION_MESSAGE);
             
         //Validating and setting part install date
-        installDate = getDateString(installDateAsString);
+       // installDate = getDateString(installDateAsString);
 
         Part partAdd = new Part();
 
@@ -115,7 +115,7 @@ public class TestMotorcycle {
         }
 
         //Validating and setting part install date
-        installDate = getDateString(serviceDateAsString);
+       // installDate = getDateString(serviceDateAsString);
         //GregorianCalendar installDate;
 
         Service newService = new Service();
@@ -127,36 +127,5 @@ public class TestMotorcycle {
         return newService;
     }
 
-    private static GregorianCalendar getDateString(String serviceDateAsString) {
-        int serviceYear;
-        int serviceMonth;
-        int serviceDay;
-        if(!Character.isDigit(serviceDateAsString.substring(0,4).charAt(0)) || !Character.isDigit(serviceDateAsString.substring(0,4).charAt(1)) || !Character.isDigit(serviceDateAsString.substring(0,4).charAt(2)) || !Character.isDigit(serviceDateAsString.substring(0,4).charAt(3))){
-            JOptionPane.showMessageDialog(null, "Year is not valid, setting to default of 2000");
-            serviceYear = 2000;
-        }
-        else{
-            serviceYear = Integer.parseInt(serviceDateAsString.substring(0,4));
-        }
 
-        if(!Character.isDigit(serviceDateAsString.substring(5,7).charAt(0)) || !Character.isDigit(serviceDateAsString.substring(5,7).charAt(1))){
-            JOptionPane.showMessageDialog(null, "Month is not valid, setting to default of 1");
-            serviceMonth = 1;
-        }
-        else{
-            serviceMonth = Integer.parseInt(serviceDateAsString.substring(5,7));
-        }
-
-        if(!Character.isDigit(serviceDateAsString.substring(8,10).charAt(0)) || !Character.isDigit(serviceDateAsString.substring(8,10).charAt(1))){
-            JOptionPane.showMessageDialog(null, "Day is not valid, setting to default of 1");
-            serviceDay = 1;
-        }
-        else{
-            serviceDay = Integer.parseInt(serviceDateAsString.substring(8,10));
-        }
-
-        GregorianCalendar installDate = new GregorianCalendar(serviceYear, serviceMonth, serviceDay);
-
-        return installDate;
-    }
 }
