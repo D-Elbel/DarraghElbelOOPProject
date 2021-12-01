@@ -22,9 +22,6 @@ public class AddServiceForm extends MotorcycleApp {
 
     public AddServiceForm() {
 
-        // AddServiceForm.super.open();
-
-
         $$$setupUI$$$();
         motorcycleDropdown.addActionListener(this);
 
@@ -35,15 +32,12 @@ public class AddServiceForm extends MotorcycleApp {
         if (AddServiceForm.super.motorcycles.size() < 1) {
             JOptionPane.showMessageDialog(null, "No motorcycles have been added to the system", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-            Iterator<Motorcycle> iterator = AddServiceForm.super.motorcycles.iterator();
 
-            while (iterator.hasNext()) {
-                motorcycleDropdown.addItem(iterator.next().getModelName() + "\n");
+            for (Motorcycle motorcycle : AddServiceForm.super.motorcycles) {
+                motorcycleDropdown.addItem(motorcycle.getModelName() + "\n");
             }
-
             selected = motorcycleDropdown.getSelectedIndex();
         }
-
 
         serviceSubmitButton.addActionListener(new ActionListener() {
             @Override
@@ -68,10 +62,7 @@ public class AddServiceForm extends MotorcycleApp {
                 }
 
                 serviceToAdd.setServiceNotes(serviceDescriptionText.getText());
-                //Placeholder Date!!!!
-                serviceToAdd.setServiceDate(new GregorianCalendar(2000, 1, 1));
                 serviceToAdd.setServiceDate(AddServiceForm.super.getDateString(serviceDateTextBox.getText()));
-                //AddServiceForm.super.motorcycles.get(selected).setServiceHistory();
 
                 for (int i = 0; i < AddServiceForm.super.motorcycles.get(selected).getServiceHistory().length; i++) {
 
@@ -91,7 +82,6 @@ public class AddServiceForm extends MotorcycleApp {
             }
         });
     }
-
 
     public JPanel getPanel1() {
         return panel1;

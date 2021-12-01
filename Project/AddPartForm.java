@@ -22,9 +22,6 @@ public class AddPartForm extends MotorcycleApp {
 
     public AddPartForm() {
 
-        // AddServiceForm.super.open();
-
-
         $$$setupUI$$$();
         motorcycleDropdown.addActionListener(this);
 
@@ -35,10 +32,9 @@ public class AddPartForm extends MotorcycleApp {
         if (AddPartForm.super.motorcycles.size() < 1) {
             JOptionPane.showMessageDialog(null, "No motorcycles have been added to the system", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-            Iterator<Motorcycle> iterator = AddPartForm.super.motorcycles.iterator();
 
-            while (iterator.hasNext()) {
-                motorcycleDropdown.addItem(iterator.next().getModelName() + "\n");
+            for (Motorcycle motorcycle : AddPartForm.super.motorcycles) {
+                motorcycleDropdown.addItem(motorcycle.getModelName() + "\n");
             }
 
             selected = motorcycleDropdown.getSelectedIndex();
@@ -54,10 +50,7 @@ public class AddPartForm extends MotorcycleApp {
 
                 partToAdd.setName(partNameText.getText());
                 partToAdd.setDescription(partDescriptionText.getText());
-                //Placeholder Date!!!!
-                //partToAdd.setInstallDate(new GregorianCalendar(2000, 1, 1));
                 partToAdd.setInstallDate(AddPartForm.super.getDateString(serviceDateTextBox.getText()));
-                //AddServiceForm.super.motorcycles.get(selected).setServiceHistory();
 
                 for (int i = 0; i < AddPartForm.super.motorcycles.get(selected).getPartList().length; i++) {
 

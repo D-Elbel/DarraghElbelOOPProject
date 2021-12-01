@@ -27,8 +27,6 @@ public class AddWithoutVinForm extends MotorcycleApp {
 
     Motorcycle bikeToAdd = new Motorcycle();
 
-    private Motorcycle motorcycle;
-
     public AddWithoutVinForm() {
 
         addWithoutVinButton.addActionListener(new ActionListener() {
@@ -42,7 +40,6 @@ public class AddWithoutVinForm extends MotorcycleApp {
 
                 bikeToAdd.setServiceHistory(serviceArray);
                 bikeToAdd.setPartList(partArray);
-
 
                 bikeToAdd.setManufacturer(manufacturerString.getText());
                 bikeToAdd.setModelName(modelString.getText());
@@ -76,7 +73,6 @@ public class AddWithoutVinForm extends MotorcycleApp {
             }
         });
 
-
         addViaVINButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,7 +92,6 @@ public class AddWithoutVinForm extends MotorcycleApp {
                     m1.setPartList(partArray);
                     m1.setServiceHistory(serviceArray);
                     System.out.println(m1.toString());
-
                     motorcycles.add(m1);
                 }
 
