@@ -62,7 +62,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             AddWithoutVinForm gui = new AddWithoutVinForm();
             addMotorcycleFrame.add(gui.getPanel1());
             addMotorcycleFrame.setLocationRelativeTo(null);
-            addMotorcycleFrame.setSize(400, 400);
+            addMotorcycleFrame.setSize(450, 500);
             addMotorcycleFrame.setVisible(true);
         }
 
