@@ -77,7 +77,7 @@ public class AddWithoutVinForm extends MotorcycleApp {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String vinToAdd;
+                String vinToAdd = "";
                 boolean isvalid;
 
                 Part partArray[] = new Part[100];
@@ -88,7 +88,7 @@ public class AddWithoutVinForm extends MotorcycleApp {
                 isvalid = validateVIN(vinToAdd);
 
                 if (isvalid) {
-                    Motorcycle m1 = new Motorcycle(vinToAdd, partArray);
+                    Motorcycle m1 = new Motorcycle(vinToAdd);
                     m1.setPartList(partArray);
                     m1.setServiceHistory(serviceArray);
                     System.out.println(m1.toString());

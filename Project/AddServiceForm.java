@@ -22,6 +22,7 @@ public class AddServiceForm extends MotorcycleApp {
 
     public AddServiceForm() {
 
+
         $$$setupUI$$$();
         motorcycleDropdown.addActionListener(this);
 

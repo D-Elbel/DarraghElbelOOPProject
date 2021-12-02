@@ -2,7 +2,14 @@ package Project;
 
 import javax.swing.*;
 import java.io.Serializable;
-import java.util.Arrays;
+
+//Motorcycle.java
+
+/**
+ * Instantiable class defining a Motorcycle object. This class contains methods allowing for the generation
+ * of an object via Vehicle Identification Numbers
+ * @author Darragh Elbel
+ */
 
 public class Motorcycle implements Serializable {
 
@@ -15,36 +22,33 @@ public class Motorcycle implements Serializable {
     private int odometer;
     private String vis;
     private String countryOfOrigin;
-    private static int motorcycleSystemNumber = 0;
     private Service[] serviceHistory;
     private Part[] partList;
 
-    public Motorcycle(String vin, String modelName, String manufacturer, int engineDisplacement, String engineType, int yearCode, Service[] serviceHistory, Part[] partList) {
+    /**
+     * Motorcycle single argument constructor, this constructor calls the setVin() method which generates values
+     * for the object.
+     */
 
-        motorcycleSystemNumber++;
+    public Motorcycle(String vin){
         setVin(vin);
-        setModelName(modelName);
-        setManufacturer(manufacturer);
-        setEngineDisplacement(engineDisplacement);
-        setEngineType(engineType);
-        setYearCode(yearCode);
-        setServiceHistory(serviceHistory);
-        setPartList(partList);
     }
 
-    public String getCountryOfOrigin() {
-        return countryOfOrigin;
-    }
-
-    public void setCountryOfOrigin(String countryOfOrigin) {
-        this.countryOfOrigin = countryOfOrigin;
-    }
-
-    public Motorcycle(String vin, Part partList[]){
-        setVin(vin);
-        setPartList(partList);
-    }
-
+    /**
+     * Motorcycle no-argument constructor, this constructor generates default values for a new motorcycle object.
+     * @param vin is the Vehicle Identification Number of the Motorcycle
+     * @param modelName is the model name of the Motorcycle
+     * @param manufacturer is the manufacturer of the Motorcycle
+     * @param engineDisplacement is the engine displacement of the Motorcycle in ccs
+     * @param engineType is the engine type of the Motorcycle
+     * @param yearcode is the year of registration of the Motorcycle
+     * @param odometer is the odometer reading of the Motorcycle
+     * @param vis is the Vehicle Identifier Section of the VIN of the Motorcycle
+     * @param countryOfOrigin is the country of manufacture of the Motorcycle
+     * @param serviceHistory is the array of services associated with the Motorcycle
+     * @param partList is the array of parts associated with the Motorcycle
+     * @param
+     */
     public Motorcycle(){
         setVin("00000000000000000");
         setPartList(null);
@@ -59,10 +63,32 @@ public class Motorcycle implements Serializable {
 
     }
 
+    /**
+     * Method to get the value of attribute countryOfOrigin
+     * @return a string indicating the motorcycle's country of origin
+     */
+    public String getCountryOfOrigin() {
+        return countryOfOrigin;
+    }
+
+    /**
+     * Method to set the value of attribute countryOfOrigin
+     */
+    public void setCountryOfOrigin(String countryOfOrigin) {
+        this.countryOfOrigin = countryOfOrigin;
+    }
+
+    /**
+     * Method to get the value of attribute odometer
+     * @return an integer value specifying the current odometer reading
+     */
     public int getOdometer() {
         return odometer;
     }
 
+    /**
+     * Method to set the value of attribute countryOfOrigin, setting odometer to 0 if invalid value is entered
+     */
     public void setOdometer(int odometer) {
 
         if(odometer < 0){
@@ -73,18 +99,32 @@ public class Motorcycle implements Serializable {
         }
     }
 
+    /**
+     * Method getting the motorcycle's model name
+     * @return a String containing the model name
+     */
     public String getModelName() {
         return modelName;
     }
 
+    /**
+     * Method to set the value of attribute modelname
+     */
     public void setModelName(String modelName) {
         this.modelName = modelName;
     }
 
+    /**
+     * Method to get the value of attribute manufacturer
+     * @return a String contianing the manufacturer's name
+     */
     public String getManufacturer() {
         return manufacturer;
     }
 
+    /**
+     * Method to set the value of attribute manufacturer
+     */
     public void setManufacturer(String manufacturer) {
 
         this.manufacturer = manufacturer;
@@ -199,7 +239,6 @@ public class Motorcycle implements Serializable {
             if(manufacturerSet == false){
                 recognitionWarnings+="Could not recognize manufacturer\n";
             }
-
 
             //Finding model name from VDS
             String modelCodeVds = getVin().substring(3,6);

@@ -31,6 +31,12 @@
               <text value="Submit"/>
             </properties>
           </component>
+          <component id="afe60" class="javax.swing.JButton" binding="deleteMotorcycle">
+            <constraints/>
+            <properties>
+              <text value="Delete Selected"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <grid id="deb2d" layout-manager="GridBagLayout">
@@ -55,8 +61,9 @@
               <component id="6b929" class="javax.swing.JTextArea" binding="serviceHistoryTextArea">
                 <constraints/>
                 <properties>
+                  <lineWrap value="true"/>
                   <minimumSize width="100" height="300"/>
-                  <preferredSize width="150" height="300"/>
+                  <preferredSize width="150" height="600"/>
                 </properties>
               </component>
             </children>
@@ -75,8 +82,9 @@
               <component id="38f17" class="javax.swing.JTextArea" binding="partsTextArea">
                 <constraints/>
                 <properties>
+                  <lineWrap value="true"/>
                   <minimumSize width="100" height="300"/>
-                  <preferredSize width="150" height="300"/>
+                  <preferredSize width="150" height="600"/>
                 </properties>
               </component>
             </children>
@@ -96,8 +104,9 @@
                 <constraints/>
                 <properties>
                   <editable value="false"/>
+                  <lineWrap value="true"/>
                   <minimumSize width="100" height="350"/>
-                  <preferredSize width="150" height="300"/>
+                  <preferredSize width="150" height="600"/>
                 </properties>
               </component>
             </children>

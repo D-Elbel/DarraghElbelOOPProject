@@ -1,28 +1,22 @@
 package Project;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 
 public class MotorcycleApp extends JFrame implements ActionListener {
 
-    private static JFrame addMotorcycleFrame, frame, addServiceFrame, addPartFrame, viewMotorcycles;
+    private static JFrame addMotorcycleFrame, addServiceFrame, addPartFrame, viewMotorcycles;
     private JMenu addMotorcycle;
     private JMenu viewMotorcycle;
     private JMenu addService;
     private JMenu addPart;
-    private JPanel testPanel, leftPanel, addWithoutVinPanel;
-    private JTextArea displayTextArea;
 
-    TitledBorder titledBorder;
     ArrayList<Motorcycle> motorcycles = new ArrayList<>();
-    private Motorcycle motorcycle;
 
     public MotorcycleApp(){
 
@@ -39,25 +33,18 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         menuBar.add(addService);
         menuBar.add(addPart);
 
-
         setTitle("My Motorcycle Manager");
-        setSize(650, 480);
+        setSize(650, 400);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        JTextArea displayTextArea = new JTextArea("TEST");
+        //https://stackoverflow.com/questions/15657569/how-to-set-icon-to-jframe found image setting code here
+        JLabel imgLabel = new JLabel();
+        imgLabel.setIcon(new ImageIcon(getClass().getResource("javaprojectlogo.png")));
 
-        JPanel testPanel = new JPanel();
-
-        testPanel.add(displayTextArea);
-        testPanel.setVisible(false);
-
-        testPanel.add(displayTextArea);
-        add(testPanel);
-        testPanel.setVisible(true);
-
-        setLayout(new BorderLayout(2,2));
+        this.add(imgLabel);
+        setLayout(new FlowLayout());
 
         open();
     }
@@ -110,7 +97,6 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             viewMotorcycles.setLocationRelativeTo(null);
             viewMotorcycles.setSize(650,400);
             viewMotorcycles.setVisible(true);
-
         }
 
         if(menuName.equals("Quit")){
@@ -190,33 +176,8 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         addPartFrame.dispose();
     }
 
-    public void displayMotorcycles() {
-        JComboBox motorcycleCombo = new JComboBox();
-
-        motorcycleCombo.addActionListener(this);
-
-        JTextArea output = new JTextArea();
-
-        output.setText("Motorcycle Details:\n\n");
-
-        if(motorcycles.size() < 1) {
-            JOptionPane.showMessageDialog(null,"No motorcycles have been added to the system","Warning",JOptionPane.WARNING_MESSAGE);
-        }
-        else {
-            Iterator<Motorcycle> iterator = motorcycles.iterator();
-
-            while(iterator.hasNext()) {
-                motorcycleCombo.addItem(iterator.next().getModelName() + "\n");
-            }
-
-            JOptionPane.showMessageDialog(null,motorcycleCombo,"Select your motorcycle to view details",JOptionPane.PLAIN_MESSAGE);
-
-            int selected = motorcycleCombo.getSelectedIndex();
-            output.append(motorcycles.get(selected).toString());
-
-            JOptionPane.showMessageDialog(null,output,"Motorcycle Details",JOptionPane.PLAIN_MESSAGE);
-
-        }
+    public void closeViewFrame() throws IOException {
+        viewMotorcycles.dispose();
     }
 
     public void open() {
@@ -238,7 +199,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             }
         }
         catch(ClassNotFoundException cce) {
-            JOptionPane.showMessageDialog(null,"Class of object deserialised not a match for anything used in this application","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Class of object deserialized not a match for anything used in this application","Error",JOptionPane.ERROR_MESSAGE);
             cce.printStackTrace();
         } catch (FileNotFoundException fnfe) {
             JOptionPane.showMessageDialog(null,"File not found","Error",JOptionPane.ERROR_MESSAGE);
@@ -270,8 +231,6 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             }
         }
 
-
-
         for(int i = 0; i < monthSub.length(); i++){
             if(!Character.isDigit(yearSub.charAt(i))){
                 JOptionPane.showMessageDialog(null, "Month is not valid, setting to default of 1");
@@ -292,9 +251,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, "Invalid Date Length, setting to default", "Invalid Length", JOptionPane.WARNING_MESSAGE);
         }
 
-        GregorianCalendar installDate = new GregorianCalendar(serviceYear, serviceMonth, serviceDay);
-
-        return installDate;
+        return new GregorianCalendar(serviceYear, serviceMonth, serviceDay);
     }
 
 }

@@ -5,6 +5,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class viewMotorcycles extends MotorcycleApp {
@@ -14,11 +15,15 @@ public class viewMotorcycles extends MotorcycleApp {
     private JTextArea motorcycleTextArea;
     private JTextArea partsTextArea;
     private JTextArea serviceHistoryTextArea;
+    private JButton deleteMotorcycle;
     private int selected;
 
     public viewMotorcycles() {
 
         $$$setupUI$$$();
+
+        motorcycleTextArea.setLineWrap(true);
+
         motorcycleDropdown.addActionListener(this);
 
         JTextArea output = new JTextArea();
@@ -77,6 +82,26 @@ public class viewMotorcycles extends MotorcycleApp {
                 partsTextArea.append(partsOutput);
             }
         });
+        deleteMotorcycle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                selected = motorcycleDropdown.getSelectedIndex();
+
+                System.out.print(selected);
+
+                Project.viewMotorcycles.super.motorcycles.remove(selected);
+
+                JOptionPane.showMessageDialog(null, "Motorcycle Deleted");
+
+              try {
+                   viewMotorcycles.super.save();
+                   viewMotorcycles.super.closeViewFrame();
+               } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     public JPanel getPanel1() {
@@ -106,6 +131,9 @@ public class viewMotorcycles extends MotorcycleApp {
         viewSubmitButton = new JButton();
         viewSubmitButton.setText("Submit");
         panel2.add(viewSubmitButton);
+        deleteMotorcycle = new JButton();
+        deleteMotorcycle.setText("Delete Selected");
+        panel2.add(deleteMotorcycle);
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridBagLayout());
         panel3.setMinimumSize(new Dimension(650, 350));
@@ -122,8 +150,9 @@ public class viewMotorcycles extends MotorcycleApp {
         panel3.add(scrollPane1, gbc);
         scrollPane1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         serviceHistoryTextArea = new JTextArea();
+        serviceHistoryTextArea.setLineWrap(true);
         serviceHistoryTextArea.setMinimumSize(new Dimension(100, 300));
-        serviceHistoryTextArea.setPreferredSize(new Dimension(150, 300));
+        serviceHistoryTextArea.setPreferredSize(new Dimension(150, 600));
         scrollPane1.setViewportView(serviceHistoryTextArea);
         final JScrollPane scrollPane2 = new JScrollPane();
         scrollPane2.setMinimumSize(new Dimension(200, 300));
@@ -135,8 +164,9 @@ public class viewMotorcycles extends MotorcycleApp {
         panel3.add(scrollPane2, gbc);
         scrollPane2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         partsTextArea = new JTextArea();
+        partsTextArea.setLineWrap(true);
         partsTextArea.setMinimumSize(new Dimension(100, 300));
-        partsTextArea.setPreferredSize(new Dimension(150, 300));
+        partsTextArea.setPreferredSize(new Dimension(150, 600));
         scrollPane2.setViewportView(partsTextArea);
         final JScrollPane scrollPane3 = new JScrollPane();
         scrollPane3.setMinimumSize(new Dimension(200, 350));
@@ -149,8 +179,9 @@ public class viewMotorcycles extends MotorcycleApp {
         scrollPane3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         motorcycleTextArea = new JTextArea();
         motorcycleTextArea.setEditable(false);
+        motorcycleTextArea.setLineWrap(true);
         motorcycleTextArea.setMinimumSize(new Dimension(100, 350));
-        motorcycleTextArea.setPreferredSize(new Dimension(150, 300));
+        motorcycleTextArea.setPreferredSize(new Dimension(150, 600));
         scrollPane3.setViewportView(motorcycleTextArea);
     }
 
