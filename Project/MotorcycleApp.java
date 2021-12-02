@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 public class MotorcycleApp extends JFrame implements ActionListener {
 
-    private static JFrame addMotorcycleFrame, frame, addServiceFrame, addPartFrame;
+    private static JFrame addMotorcycleFrame, frame, addServiceFrame, addPartFrame, viewMotorcycles;
     private JMenu addMotorcycle;
     private JMenu viewMotorcycle;
     private JMenu addService;
@@ -103,8 +103,17 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         }
 
         if(menuName.equals("View List")){
-            open();
-            displayMotorcycles();
+
+            viewMotorcycles = new JFrame("View");
+            viewMotorcycles viewGui = new viewMotorcycles();
+            viewMotorcycles.add(viewGui.getPanel1());
+            viewMotorcycles.setLocationRelativeTo(null);
+            viewMotorcycles.setSize(450,500);
+            viewMotorcycles.setVisible(true);
+
+
+           // open();
+           // displayMotorcycles();
         }
 
         if(menuName.equals("Quit")){
