@@ -37,6 +37,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         menuBar.add(addMotorcycle);
         menuBar.add(viewMotorcycle);
         menuBar.add(addService);
+        menuBar.add(addPart);
 
 
         setTitle("My Motorcycle Manager");
@@ -150,11 +151,11 @@ public class MotorcycleApp extends JFrame implements ActionListener {
     private void createAddPartMenu() {
         JMenuItem item;
 
-        addService = new JMenu("Add Part");
+        addPart = new JMenu("Add Part");
 
         item = new JMenuItem("Add Part");
         item.addActionListener(this);
-        addService.add(item);
+        addPart.add(item);
     }
 
 
