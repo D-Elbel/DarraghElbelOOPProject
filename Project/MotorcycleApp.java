@@ -108,12 +108,9 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             viewMotorcycles viewGui = new viewMotorcycles();
             viewMotorcycles.add(viewGui.getPanel1());
             viewMotorcycles.setLocationRelativeTo(null);
-            viewMotorcycles.setSize(450,500);
+            viewMotorcycles.setSize(650,400);
             viewMotorcycles.setVisible(true);
 
-
-           // open();
-           // displayMotorcycles();
         }
 
         if(menuName.equals("Quit")){

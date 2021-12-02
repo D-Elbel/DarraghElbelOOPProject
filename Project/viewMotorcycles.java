@@ -39,6 +39,10 @@ public class viewMotorcycles extends MotorcycleApp {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                motorcycleTextArea.setText("");
+                serviceHistoryTextArea.setText("");
+                partsTextArea.setText("");
+
                 selected = motorcycleDropdown.getSelectedIndex();
 
                 motorcycleTextArea.setText("TestTest");
@@ -49,9 +53,28 @@ public class viewMotorcycles extends MotorcycleApp {
                 motorcycleTextArea.append("\n\nEngine Size: " + viewMotorcycles.super.motorcycles.get(selected).getEngineDisplacement());
 
 
-                serviceHistoryTextArea.append(Arrays.toString(viewMotorcycles.super.motorcycles.get(selected).getServiceHistory()));
+                String serviceOutput = "", partsOutput = "";
+
+                for (int i = 0; i < viewMotorcycles.super.motorcycles.get(selected).getServiceHistory().length; i++) {
+                    if (viewMotorcycles.super.motorcycles.get(selected).getServiceHistory()[i] != null) {
+                        serviceOutput += viewMotorcycles.super.motorcycles.get(selected).getServiceHistory()[i];
+                    } else {
+                        i = viewMotorcycles.super.motorcycles.get(selected).getServiceHistory().length;
+                    }
+                }
 
 
+                for (int i = 0; i < viewMotorcycles.super.motorcycles.get(selected).getPartList().length; i++) {
+                    if (viewMotorcycles.super.motorcycles.get(selected).getPartList()[i] != null) {
+                        partsOutput += viewMotorcycles.super.motorcycles.get(selected).getPartList()[i];
+                    } else {
+                        i = viewMotorcycles.super.motorcycles.get(selected).getPartList().length;
+                    }
+                }
+
+                serviceHistoryTextArea.append(serviceOutput);
+
+                partsTextArea.append(partsOutput);
             }
         });
     }
@@ -70,11 +93,11 @@ public class viewMotorcycles extends MotorcycleApp {
     private void $$$setupUI$$$() {
         panel1 = new JPanel();
         panel1.setLayout(new BorderLayout(0, 0));
-        panel1.setMinimumSize(new Dimension(500, 350));
-        panel1.setPreferredSize(new Dimension(550, 350));
+        panel1.setMinimumSize(new Dimension(650, 350));
+        panel1.setPreferredSize(new Dimension(650, 350));
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 1));
-        panel2.setMinimumSize(new Dimension(300, 32));
+        panel2.setMinimumSize(new Dimension(650, 32));
         panel2.setPreferredSize(new Dimension(316, 50));
         panel2.putClientProperty("html.disable", Boolean.FALSE);
         panel1.add(panel2, BorderLayout.NORTH);
@@ -85,11 +108,12 @@ public class viewMotorcycles extends MotorcycleApp {
         panel2.add(viewSubmitButton);
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridBagLayout());
+        panel3.setMinimumSize(new Dimension(650, 350));
         panel3.setPreferredSize(new Dimension(500, 300));
         panel1.add(panel3, BorderLayout.CENTER);
         final JScrollPane scrollPane1 = new JScrollPane();
-        scrollPane1.setMinimumSize(new Dimension(150, 300));
-        scrollPane1.setPreferredSize(new Dimension(150, 300));
+        scrollPane1.setMinimumSize(new Dimension(200, 300));
+        scrollPane1.setPreferredSize(new Dimension(200, 300));
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
@@ -99,11 +123,11 @@ public class viewMotorcycles extends MotorcycleApp {
         scrollPane1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         serviceHistoryTextArea = new JTextArea();
         serviceHistoryTextArea.setMinimumSize(new Dimension(100, 300));
-        serviceHistoryTextArea.setPreferredSize(new Dimension(100, 300));
+        serviceHistoryTextArea.setPreferredSize(new Dimension(150, 300));
         scrollPane1.setViewportView(serviceHistoryTextArea);
         final JScrollPane scrollPane2 = new JScrollPane();
-        scrollPane2.setMinimumSize(new Dimension(150, 300));
-        scrollPane2.setPreferredSize(new Dimension(150, 300));
+        scrollPane2.setMinimumSize(new Dimension(200, 300));
+        scrollPane2.setPreferredSize(new Dimension(200, 300));
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 0;
@@ -112,11 +136,11 @@ public class viewMotorcycles extends MotorcycleApp {
         scrollPane2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         partsTextArea = new JTextArea();
         partsTextArea.setMinimumSize(new Dimension(100, 300));
-        partsTextArea.setPreferredSize(new Dimension(100, 300));
+        partsTextArea.setPreferredSize(new Dimension(150, 300));
         scrollPane2.setViewportView(partsTextArea);
         final JScrollPane scrollPane3 = new JScrollPane();
-        scrollPane3.setMinimumSize(new Dimension(150, 350));
-        scrollPane3.setPreferredSize(new Dimension(150, 300));
+        scrollPane3.setMinimumSize(new Dimension(200, 350));
+        scrollPane3.setPreferredSize(new Dimension(200, 300));
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -126,7 +150,7 @@ public class viewMotorcycles extends MotorcycleApp {
         motorcycleTextArea = new JTextArea();
         motorcycleTextArea.setEditable(false);
         motorcycleTextArea.setMinimumSize(new Dimension(100, 350));
-        motorcycleTextArea.setPreferredSize(new Dimension(100, 300));
+        motorcycleTextArea.setPreferredSize(new Dimension(150, 300));
         scrollPane3.setViewportView(motorcycleTextArea);
     }
 
