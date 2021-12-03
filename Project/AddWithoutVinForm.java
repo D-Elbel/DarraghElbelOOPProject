@@ -24,6 +24,7 @@ public class AddWithoutVinForm extends MotorcycleApp {
     private JLabel headerLabel;
     private JTextField vinEntry;
     private JButton addViaVINButton;
+    private JTextField odometerString;
 
     Motorcycle bikeToAdd = new Motorcycle();
 
@@ -47,11 +48,11 @@ public class AddWithoutVinForm extends MotorcycleApp {
                 bikeToAdd.setEngineType(engineTypeString.getText());
                 bikeToAdd.setYearCode(Integer.parseInt(yearString.getText()));
                 bikeToAdd.setCountryOfOrigin(countryOfOriginString.getText());
+                bikeToAdd.setOdometer(Integer.parseInt(odometerString.getText()));
 
                 bikeToAdd.setVin("00000000000000000");
 
                 AddWithoutVinForm.super.motorcycles.add(bikeToAdd);
-
 
                 try {
                     AddWithoutVinForm.super.save();
@@ -92,11 +93,12 @@ public class AddWithoutVinForm extends MotorcycleApp {
                     m1.setPartList(partArray);
                     m1.setServiceHistory(serviceArray);
                     System.out.println(m1.toString());
-                    motorcycles.add(m1);
+                    AddWithoutVinForm.super.motorcycles.add(m1);
                 }
 
                 try {
                     AddWithoutVinForm.super.save();
+                    AddWithoutVinForm.super.closeFrame();
 
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -296,12 +298,32 @@ public class AddWithoutVinForm extends MotorcycleApp {
         gbc.anchor = GridBagConstraints.WEST;
         panel4.add(label6, gbc);
         countryOfOriginString = new JTextField();
+        countryOfOriginString.setColumns(20);
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 0, 5, 0);
         panel4.add(countryOfOriginString, gbc);
+        odometerString = new JTextField();
+        odometerString.setColumns(20);
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 6;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 0, 5, 0);
+        panel4.add(odometerString, gbc);
+        final JLabel label7 = new JLabel();
+        label7.setHorizontalAlignment(10);
+        label7.setHorizontalTextPosition(11);
+        label7.setText("Odometer");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.anchor = GridBagConstraints.EAST;
+        panel4.add(label7, gbc);
     }
 
     /**

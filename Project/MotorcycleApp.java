@@ -57,7 +57,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
             addMotorcycleFrame.dispose();
         }
 
-        if(menuName.equals("Add Via VIN")){
+        if(menuName.equals("Add Motorcycle")){
             addMotorcycleFrame = new JFrame("Add Motorcycle");
             AddWithoutVinForm gui = new AddWithoutVinForm();
             addMotorcycleFrame.add(gui.getPanel1());
@@ -111,11 +111,7 @@ public class MotorcycleApp extends JFrame implements ActionListener {
 
         addMotorcycle = new JMenu("Add Motorcycles");
 
-        item = new JMenuItem("Add Via VIN");
-        item.addActionListener(this);
-        addMotorcycle.add(item);
-
-        item = new JMenuItem("Add Without VIN");
+        item = new JMenuItem("Add Motorcycle");
         item.addActionListener(this);
         addMotorcycle.add(item);
     }
@@ -201,9 +197,6 @@ public class MotorcycleApp extends JFrame implements ActionListener {
         catch(ClassNotFoundException cce) {
             JOptionPane.showMessageDialog(null,"Class of object deserialized not a match for anything used in this application","Error",JOptionPane.ERROR_MESSAGE);
             cce.printStackTrace();
-        } catch (FileNotFoundException fnfe) {
-            JOptionPane.showMessageDialog(null,"File not found","Error",JOptionPane.ERROR_MESSAGE);
-            fnfe.printStackTrace();
         }
         catch (IOException ioe) {
             JOptionPane.showMessageDialog(null,"Problem reading from the file","Error",JOptionPane.ERROR_MESSAGE);

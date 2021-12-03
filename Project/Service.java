@@ -6,7 +6,6 @@ import java.util.GregorianCalendar;
 
 public class Service implements Serializable {
 
-    private static int systemServiceNumber;
     private GregorianCalendar serviceDate;
     private String dealerOrSelf;
     private String serviceNotes;
@@ -15,15 +14,10 @@ public class Service implements Serializable {
         setServiceDate(serviceDate);
         setDealerOrSelf(dealerOrSelf);
         setServiceNotes(serviceNotes);
-        systemServiceNumber++;
     }
 
     public Service() {
 
-    }
-
-    public static int getSystemServiceNumber() {
-        return systemServiceNumber;
     }
 
     public GregorianCalendar getServiceDate() {
@@ -51,7 +45,7 @@ public class Service implements Serializable {
     }
 
     public String toString(){
-        return "\nService Type: " + getDealerOrSelf() + "\nService Date: " + getServiceDate().get(Calendar.DAY_OF_MONTH) + " "
-                + getServiceDate().get(Calendar.MONTH) + " " + getServiceDate().get(Calendar.YEAR) + "\nService Notes: " + getServiceNotes();
+        return "Service Type: " + getDealerOrSelf() + "\nService Date: " + getServiceDate().get(Calendar.DAY_OF_MONTH) + " "
+                + getServiceDate().get(Calendar.MONTH) + " " + getServiceDate().get(Calendar.YEAR) + "\nService Notes: " + getServiceNotes() + "\n\n";
     }
 }

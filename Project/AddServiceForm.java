@@ -135,6 +135,8 @@ public class AddServiceForm extends MotorcycleApp {
         final JLabel label2 = new JLabel();
         label2.setText("   Enter Service Notes Below");
         panel3.add(label2, BorderLayout.NORTH);
+
+
     }
 
     /**

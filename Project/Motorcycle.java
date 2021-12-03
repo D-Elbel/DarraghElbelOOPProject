@@ -116,7 +116,7 @@ public class Motorcycle implements Serializable {
 
     /**
      * Method to get the value of attribute manufacturer
-     * @return a String contianing the manufacturer's name
+     * @return a String containing the manufacturer's name
      */
     public String getManufacturer() {
         return manufacturer;
@@ -130,10 +130,19 @@ public class Motorcycle implements Serializable {
         this.manufacturer = manufacturer;
     }
 
+    /**
+     * Method to get the value of attribute manufacturer
+     * @return an int containing the engine's displacement value in ccs the
+     */
     public int getEngineDisplacement() {
         return engineDisplacement;
     }
 
+    /**
+     * Method to set the value of attribute engine displacement
+     * this method prevents a negative value being entered and displays
+     * a warning message if this is attempted
+     */
     public void setEngineDisplacement(int engineDisplacement) {
 
         if(engineDisplacement < 0){
@@ -146,42 +155,80 @@ public class Motorcycle implements Serializable {
 
     }
 
+    /**
+     * Method to get the type of engine
+     * @return a String containing the motorcycle's engine type
+     */
     public String getEngineType() {
         return engineType;
     }
 
+    /**
+     * Method to set the value of attribute engineType
+     */
     public void setEngineType(String engineType) {
         this.engineType = engineType;
     }
 
+    /**
+     * Method to get the value of attribute manufacturer
+     * @return an int containing the registration year of the motorcycle
+     */
     public int getYearCode() {
         return yearCode;
     }
 
+    /**
+     * Method to set the value of attribute yearCode
+     */
     public void setYearCode(int yearCode) {
         this.yearCode = yearCode;
     }
 
+    /**
+     * Method to get the value of attribute manufacturer
+     * @return an array of Service objects
+     */
     public Service[] getServiceHistory() {
         return serviceHistory;
     }
 
+    /**
+     * Method to set the array of Service objects
+     */
     public void setServiceHistory(Service[] serviceHistory) {
         this.serviceHistory = serviceHistory;
     }
 
+    /**
+     * Method to get the value of attribute manufacturer
+     * @return an array of Part objects
+     */
     public Part[] getPartList() {
         return partList;
     }
 
+    /**
+     * Method to set the array of Part objects
+     */
     public void setPartList(Part[] partList) {
         this.partList = partList;
     }
 
+    /**
+     * Method to get the value of attribute manufacturer
+     * @return an int containing the engine's displacement value in ccs the
+     */
     public String getVin() {
         return vin;
     }
 
+
+    /**
+     * Method to facilitate the creation of a motorcycle object via a VIN
+     * This method decodes a 17 character long VIN and populates a Motorcycle object's
+     * attributes with the information it decodes.
+     */
     public void setVin(String vin) {
 
         if(vin.equals("00000000000000000")){
@@ -204,8 +251,8 @@ public class Motorcycle implements Serializable {
             String manufacturers[] = {"Suzuki", "Yamaha", "Kawasaki", "Honda"};
 
             //Model Name Information
-            String suzukiModelCodes[] = {"BK1", "BK2", "BK3", "BK4", "BL", "BG", "BF", "BF", "BB", "AK1", "AJ1"};
-            String suzukiModelNames[] = {"GS500", "GS500", "GS500", "GS500","GSX-R1000", "GSX-R600", "DR-Z400", "DR-Z400", "GSX750F", "GSX600F"};
+            String suzukiModelCodes[] = {"BK1", "BK2", "BK3", "BK4", "BL", "BG", "BF", "BF", "BB", "AK1", "AJ1", "AV1", "AV2"};
+            String suzukiModelNames[] = {"GS500", "GS500", "GS500", "GS500","GSX-R1000", "GSX-R600", "DR-Z400", "DR-Z400", "GSX750F", "GSX600F", "SV650", "SV650"};
 
 
             //VDS Information
@@ -320,6 +367,10 @@ public class Motorcycle implements Serializable {
         this.vis = vis;
     }
 
+    /**
+     * Method to add a new part to the Motorcycle's Part array
+     * New parts are added to the first null slot in the Part array.
+     */
     public void addPart(Part partToAdd){
         for(int j = 0; j < getPartList().length; j++){
             if(getPartList()[j] == null){
@@ -329,6 +380,10 @@ public class Motorcycle implements Serializable {
         }
     }
 
+    /**
+     * Method to add a new part to the Motorcycle's Service array
+     * New parts are added to the first null slot in the Service array.
+     */
     public void addService(Service serviceToAdd){
         for(int j = 0; j < getServiceHistory().length; j++){
             if(getServiceHistory()[j] == null){
@@ -338,7 +393,12 @@ public class Motorcycle implements Serializable {
         }
     }
 
-    @Override
+    /**
+     * Method to return the state of a Motorcycle object
+     * This method performs null checking on the Part and Service arrays
+     * in order to produce a clean toString() output
+     * @return A String value specificying the state of a Book object
+     */
     public String toString() {
 
         String partsOutput = "";

@@ -40,7 +40,7 @@ public class viewMotorcycles extends MotorcycleApp {
 
             selected = motorcycleDropdown.getSelectedIndex();
         }
-        motorcycleDropdown.addActionListener(new ActionListener() {
+        viewSubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -50,12 +50,23 @@ public class viewMotorcycles extends MotorcycleApp {
 
                 selected = motorcycleDropdown.getSelectedIndex();
 
-                motorcycleTextArea.setText("TestTest");
-                motorcycleTextArea.append("Manufacturer: " + viewMotorcycles.super.motorcycles.get(selected).getManufacturer());
+                if (!viewMotorcycles.super.motorcycles.get(selected).getVin().equals("00000000000000000")) {
+                    motorcycleTextArea.append("VIN: " + viewMotorcycles.super.motorcycles.get(selected).getVin());
+                }
+                motorcycleTextArea.append("\n\nManufacturer: " + viewMotorcycles.super.motorcycles.get(selected).getManufacturer());
                 motorcycleTextArea.append("\n\nModel Name: " + viewMotorcycles.super.motorcycles.get(selected).getModelName());
                 motorcycleTextArea.append("\n\nYear: " + viewMotorcycles.super.motorcycles.get(selected).getYearCode());
                 motorcycleTextArea.append("\n\nCountry of Origin: " + viewMotorcycles.super.motorcycles.get(selected).getCountryOfOrigin());
                 motorcycleTextArea.append("\n\nEngine Size: " + viewMotorcycles.super.motorcycles.get(selected).getEngineDisplacement());
+                motorcycleTextArea.append("\n\nEngine Type: " + viewMotorcycles.super.motorcycles.get(selected).getEngineType());
+
+                if (viewMotorcycles.super.motorcycles.get(selected).getOdometer() != 0) {
+                    motorcycleTextArea.append("\n\nEngine Type: " + viewMotorcycles.super.motorcycles.get(selected).getOdometer());
+                }
+
+                if (!viewMotorcycles.super.motorcycles.get(selected).getVis().equals("null")) {
+                    motorcycleTextArea.append("\n\nVIS: " + viewMotorcycles.super.motorcycles.get(selected).getVis());
+                }
 
 
                 String serviceOutput = "", partsOutput = "";
@@ -94,10 +105,10 @@ public class viewMotorcycles extends MotorcycleApp {
 
                 JOptionPane.showMessageDialog(null, "Motorcycle Deleted");
 
-              try {
-                   viewMotorcycles.super.save();
-                   viewMotorcycles.super.closeViewFrame();
-               } catch (IOException ex) {
+                try {
+                    viewMotorcycles.super.save();
+                    viewMotorcycles.super.closeViewFrame();
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }

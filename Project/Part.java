@@ -49,6 +49,6 @@ public class Part implements Serializable {
     public String toString(){
 
         //https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html Found gregorian calendar methods in java docs
-        return "Name: " + getName() + "\n" + getDescription() + "\nInstalled: " + getInstallDate().get(Calendar.DAY_OF_MONTH) + " " + getInstallDate().get(Calendar.MONTH) + " " + getInstallDate().get(Calendar.YEAR);
+        return "Name: " + getName() + "\nDescription" + getDescription() + "\nInstalled: " + getInstallDate().get(Calendar.DAY_OF_MONTH) + " " + getInstallDate().get(Calendar.MONTH) + " " + getInstallDate().get(Calendar.YEAR) + "\n\n";
     }
 }
