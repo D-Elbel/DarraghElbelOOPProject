@@ -60,7 +60,7 @@ public class viewMotorcycles extends MotorcycleApp {
                 motorcycleTextArea.append("\n\nEngine Type: " + viewMotorcycles.super.motorcycles.get(selected).getEngineType());
 
                 if (viewMotorcycles.super.motorcycles.get(selected).getOdometer() != 0) {
-                    motorcycleTextArea.append("\n\nEngine Type: " + viewMotorcycles.super.motorcycles.get(selected).getOdometer());
+                    motorcycleTextArea.append("\n\nOdometer: " + viewMotorcycles.super.motorcycles.get(selected).getOdometer());
                 }
 
                 if (!viewMotorcycles.super.motorcycles.get(selected).getVis().equals("null")) {
