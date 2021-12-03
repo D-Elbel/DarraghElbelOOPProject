@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="project.AddPartForm">
+  <grid id="27dc6" binding="panel1" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <preferredSize width="350" height="415"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="a55bb" layout-manager="FlowLayout" hgap="5" vgap="1" flow-align="1">
+        <constraints border-constraint="North"/>
+        <properties>
+          <minimumSize width="300" height="32"/>
+          <preferredSize width="316" height="50"/>
+        </properties>
+        <clientProperties>
+          <html.disable class="java.lang.Boolean" value="false"/>
+        </clientProperties>
+        <border type="none"/>
+        <children>
+          <component id="3eab5" class="javax.swing.JComboBox" binding="motorcycleDropdown">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="ecc90" class="javax.swing.JLabel" binding="partNameLabel">
+            <constraints/>
+            <properties>
+              <text value="Part Name"/>
+            </properties>
+          </component>
+          <component id="781f0" class="javax.swing.JTextField" binding="partNameText">
+            <constraints/>
+            <properties>
+              <preferredSize width="55" height="30"/>
+            </properties>
+          </component>
+          <component id="e2cd8" class="javax.swing.JLabel" binding="partInstallDate">
+            <constraints/>
+            <properties>
+              <text value="installDate"/>
+            </properties>
+          </component>
+          <component id="511e0" class="javax.swing.JTextField" binding="serviceDateTextBox">
+            <constraints/>
+            <properties>
+              <preferredSize width="55" height="30"/>
+            </properties>
+          </component>
+          <component id="42330" class="javax.swing.JButton" binding="partSubmitButton">
+            <constraints/>
+            <properties>
+              <text value="Submit"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="236e5" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <preferredSize width="19" height="365"/>
+        </properties>
+        <border type="line"/>
+        <children>
+          <component id="603fc" class="javax.swing.JTextPane" binding="partDescriptionText">
+            <constraints border-constraint="Center"/>
+            <properties/>
+          </component>
+          <component id="cffcd" class="javax.swing.JLabel">
+            <constraints border-constraint="North"/>
+            <properties>
+              <text value="Enter Part Description Below"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

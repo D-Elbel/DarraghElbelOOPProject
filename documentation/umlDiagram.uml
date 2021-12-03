@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/t00211193/IdeaProjects/DarraghElbelOOPProject</OriginalElement>
+  <nodes>
+    <node x="637.7613636363636" y="1274.0">project.AddPartForm</node>
+    <node x="324.66666666666674" y="350.0">project.Motorcycle</node>
+    <node x="347.7613636363636" y="1296.0">project.viewMotorcycles</node>
+    <node x="505.16666666666674" y="0.0">project.Part</node>
+    <node x="156.66666666666674" y="0.0">project.Service</node>
+    <node x="298.1452020202019" y="1692.0">project.MotorcycleApp</node>
+    <node x="56.761363636363626" y="1285.0">project.AddServiceForm</node>
+    <node x="294.1452020202019" y="2298.0">project.AddWithoutVinForm</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="project.viewMotorcycles" target="project.Motorcycle" relationship="DEPENDENCY">
+      <point x="0.0" y="-150.0" />
+      <point x="482.7613636363636" y="1253.0" />
+      <point x="489.66666666666674" y="1253.0" />
+      <point x="55.0" y="436.0" />
+    </edge>
+    <edge source="project.viewMotorcycles" target="project.MotorcycleApp" relationship="GENERALIZATION">
+      <point x="67.5" y="150.0" />
+      <point x="550.2613636363636" y="1640.0" />
+      <point x="485.5505050505051" y="1640.0" />
+      <point x="485.5505050505051" y="1670.0" />
+      <point x="494.6452020202019" y="1670.0" />
+      <point x="65.5" y="-271.0" />
+    </edge>
+    <edge source="project.Motorcycle" target="project.Part" relationship="DEPENDENCY">
+      <point x="82.5" y="-436.0" />
+      <point x="517.1666666666667" y="330.0" />
+      <point x="888.7550505050506" y="330.0" />
+      <point x="888.7550505050506" y="320.0" />
+      <point x="695.6666666666667" y="320.0" />
+      <point x="63.5" y="150.0" />
+    </edge>
+    <edge source="project.AddWithoutVinForm" target="project.MotorcycleApp" relationship="GENERALIZATION">
+      <point x="-22.5" y="-249.0" />
+      <point x="406.6452020202019" y="2256.0" />
+      <point x="363.6452020202019" y="2256.0" />
+      <point x="-65.5" y="271.0" />
+    </edge>
+    <edge source="project.Motorcycle" target="project.Service" relationship="DEPENDENCY">
+      <point x="-82.5" y="-436.0" />
+      <point x="352.16666666666674" y="330.0" />
+      <point x="79.76136363636363" y="330.0" />
+      <point x="79.76136363636363" y="320.0" />
+      <point x="224.16666666666674" y="320.0" />
+      <point x="-67.5" y="150.0" />
+    </edge>
+    <edge source="project.AddPartForm" target="project.Motorcycle" relationship="DEPENDENCY">
+      <point x="-67.5" y="-172.0" />
+      <point x="705.2613636363636" y="1253.0" />
+      <point x="489.66666666666674" y="1253.0" />
+      <point x="55.0" y="436.0" />
+    </edge>
+    <edge source="project.MotorcycleApp" target="project.AddPartForm" relationship="CREATE">
+      <point x="109.16666666666663" y="-271.0" />
+      <point x="538.3118686868686" y="1670.0" />
+      <point x="840.2613636363636" y="1670.0" />
+      <point x="67.5" y="172.0" />
+    </edge>
+    <edge source="project.AddWithoutVinForm" target="project.Motorcycle" relationship="TO_ONE">
+      <point x="-67.5" y="-249.0" />
+      <point x="361.6452020202019" y="2266.0" />
+      <point x="37.0" y="2266.0" />
+      <point x="37.0" y="1243.0" />
+      <point x="379.66666666666674" y="1243.0" />
+      <point x="-55.0" y="436.0" />
+    </edge>
+    <edge source="project.AddServiceForm" target="project.Service" relationship="CREATE">
+      <point x="-67.5" y="-161.0" />
+      <point x="124.26136363636363" y="330.0" />
+      <point x="79.76136363636363" y="330.0" />
+      <point x="79.76136363636363" y="320.0" />
+      <point x="224.16666666666674" y="320.0" />
+      <point x="-67.5" y="150.0" />
+    </edge>
+    <edge source="project.AddPartForm" target="project.MotorcycleApp" relationship="GENERALIZATION">
+      <point x="-67.5" y="172.0" />
+      <point x="705.2613636363636" y="1640.0" />
+      <point x="485.5505050505051" y="1640.0" />
+      <point x="485.5505050505051" y="1670.0" />
+      <point x="494.6452020202019" y="1670.0" />
+      <point x="65.5" y="-271.0" />
+    </edge>
+    <edge source="project.AddServiceForm" target="project.Motorcycle" relationship="DEPENDENCY">
+      <point x="67.5" y="-161.0" />
+      <point x="259.2613636363636" y="1253.0" />
+      <point x="489.66666666666674" y="1253.0" />
+      <point x="55.0" y="436.0" />
+    </edge>
+    <edge source="project.AddPartForm" target="project.Part" relationship="CREATE">
+      <point x="67.5" y="-172.0" />
+      <point x="840.2613636363636" y="1243.0" />
+      <point x="888.7550505050506" y="1243.0" />
+      <point x="888.7550505050506" y="320.0" />
+      <point x="695.6666666666667" y="320.0" />
+      <point x="63.5" y="150.0" />
+    </edge>
+    <edge source="project.Motorcycle" target="project.Part" relationship="TO_MANY">
+      <point x="27.5" y="-436.0" />
+      <point x="462.16666666666674" y="320.0" />
+      <point x="568.6666666666667" y="320.0" />
+      <point x="-63.5" y="150.0" />
+    </edge>
+    <edge source="project.AddWithoutVinForm" target="project.Service" relationship="CREATE">
+      <point x="-112.5" y="-249.0" />
+      <point x="316.6452020202019" y="2276.0" />
+      <point x="26.0" y="2276.0" />
+      <point x="26.0" y="330.0" />
+      <point x="79.76136363636363" y="330.0" />
+      <point x="79.76136363636363" y="320.0" />
+      <point x="224.16666666666674" y="320.0" />
+      <point x="-67.5" y="150.0" />
+    </edge>
+    <edge source="project.AddWithoutVinForm" target="project.Part" relationship="CREATE">
+      <point x="112.5" y="-249.0" />
+      <point x="541.6452020202019" y="2276.0" />
+      <point x="947.145202020202" y="2276.0" />
+      <point x="947.145202020202" y="330.0" />
+      <point x="888.7550505050506" y="330.0" />
+      <point x="888.7550505050506" y="320.0" />
+      <point x="695.6666666666667" y="320.0" />
+      <point x="63.5" y="150.0" />
+    </edge>
+    <edge source="project.MotorcycleApp" target="project.AddWithoutVinForm" relationship="CREATE">
+      <point x="65.5" y="271.0" />
+      <point x="494.6452020202019" y="2256.0" />
+      <point x="451.6452020202019" y="2256.0" />
+      <point x="22.5" y="-249.0" />
+    </edge>
+    <edge source="project.AddServiceForm" target="project.MotorcycleApp" relationship="GENERALIZATION">
+      <point x="67.5" y="161.0" />
+      <point x="259.2613636363636" y="1640.0" />
+      <point x="485.5505050505051" y="1640.0" />
+      <point x="485.5505050505051" y="1670.0" />
+      <point x="494.6452020202019" y="1670.0" />
+      <point x="65.5" y="-271.0" />
+    </edge>
+    <edge source="project.MotorcycleApp" target="project.Motorcycle" relationship="TO_MANY">
+      <point x="-109.16666666666663" y="-271.0" />
+      <point x="319.9785353535353" y="1670.0" />
+      <point x="46.261363636363626" y="1670.0" />
+      <point x="46.261363636363626" y="1253.0" />
+      <point x="37.0" y="1253.0" />
+      <point x="37.0" y="1243.0" />
+      <point x="379.66666666666674" y="1243.0" />
+      <point x="-55.0" y="436.0" />
+    </edge>
+    <edge source="project.MotorcycleApp" target="project.AddServiceForm" relationship="CREATE">
+      <point x="-65.5" y="-271.0" />
+      <point x="363.6452020202019" y="1660.0" />
+      <point x="124.26136363636363" y="1660.0" />
+      <point x="-67.5" y="161.0" />
+    </edge>
+    <edge source="project.AddWithoutVinForm" target="project.Motorcycle" relationship="CREATE">
+      <point x="67.5" y="-249.0" />
+      <point x="496.6452020202019" y="2266.0" />
+      <point x="918.2613636363636" y="2266.0" />
+      <point x="918.2613636363636" y="1253.0" />
+      <point x="489.66666666666674" y="1253.0" />
+      <point x="55.0" y="436.0" />
+    </edge>
+    <edge source="project.MotorcycleApp" target="project.viewMotorcycles" relationship="CREATE">
+      <point x="21.83333333333337" y="-271.0" />
+      <point x="450.9785353535353" y="1670.0" />
+      <point x="415.2613636363636" y="1670.0" />
+      <point x="-67.5" y="150.0" />
+    </edge>
+    <edge source="project.MotorcycleApp" target="project.Motorcycle" relationship="DEPENDENCY">
+      <point x="-21.833333333333258" y="-271.0" />
+      <point x="407.31186868686865" y="1650.0" />
+      <point x="337.2613636363636" y="1650.0" />
+      <point x="337.2613636363636" y="1253.0" />
+      <point x="489.66666666666674" y="1253.0" />
+      <point x="55.0" y="436.0" />
+    </edge>
+    <edge source="project.Motorcycle" target="project.Service" relationship="TO_MANY">
+      <point x="-27.5" y="-436.0" />
+      <point x="407.16666666666674" y="330.0" />
+      <point x="359.16666666666674" y="330.0" />
+      <point x="67.5" y="150.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.4" showDependencies="true" x="930.4999999999982" y="1214.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

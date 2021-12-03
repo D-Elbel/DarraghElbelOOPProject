@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="project.AddServiceForm">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="22" width="500" height="398"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="34eae" layout-manager="FlowLayout" hgap="5" vgap="1" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <minimumSize width="300" height="32"/>
+          <preferredSize width="316" height="20"/>
+        </properties>
+        <clientProperties>
+          <html.disable class="java.lang.Boolean" value="false"/>
+        </clientProperties>
+        <border type="none"/>
+        <children>
+          <component id="3b69a" class="javax.swing.JComboBox" binding="motorcycleDropdown">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="d4628" class="javax.swing.JRadioButton" binding="dealerServiceRadio">
+            <constraints/>
+            <properties>
+              <text value="Dealer Service"/>
+            </properties>
+          </component>
+          <component id="3634" class="javax.swing.JRadioButton" binding="selfServiceRadio">
+            <constraints/>
+            <properties>
+              <text value="Self Service"/>
+            </properties>
+          </component>
+          <component id="e39aa" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Service Date"/>
+            </properties>
+          </component>
+          <component id="cfc6c" class="javax.swing.JTextField" binding="serviceDateTextBox">
+            <constraints/>
+            <properties>
+              <preferredSize width="55" height="30"/>
+            </properties>
+          </component>
+          <component id="e1a58" class="javax.swing.JButton" binding="serviceSubmitButton">
+            <constraints/>
+            <properties>
+              <text value="Submit"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="1dbf9" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="South"/>
+        <properties>
+          <preferredSize width="19" height="365"/>
+        </properties>
+        <border type="line"/>
+        <children>
+          <component id="7038d" class="javax.swing.JTextPane" binding="serviceDescriptionText">
+            <constraints border-constraint="Center"/>
+            <properties/>
+          </component>
+          <component id="70370" class="javax.swing.JLabel">
+            <constraints border-constraint="North"/>
+            <properties>
+              <text value="   Enter Service Notes Below"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
